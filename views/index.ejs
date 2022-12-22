@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include("header", {}) %>
+<h1><%= title %></h1>
+<p>Bienvenido a <%= title %></p>
+<p>Tu tienda Online favorita. Todo lo que puedas necesitar ¡Siempre al mejor precio!</p>
+<%- include("footer", {}) %>
