@@ -1,15 +1,19 @@
 <%- include("header", {}) %>
-<h1><%= title %></h1>
-<p>Bienvenido a <%= title %></p>
+<h1 id="titulo"><%= title %></h1>
 <div class="align">
     <div class="image">
-      <img src="/images/deportes.png" alt="Diferentes deportes">
+      <img id="imgportada" src="/images/deportes.png" alt="Diferentes deportes">
     </div>
     <div class="text">
-      <h1>Paris is one of the most beautiful cities in France.</h1>
+      <h2>Nuestra historia</h2>
+      <p>Somos una pequeña empresa creada por cuatro ingenieros informáticos, que decidieron embarcarse en el mundo de la creación de las aplicaciones web.</p>
+      <p>Para este primer proyecto, hemos decidido crear la primera comunidad online para adentrarse en el mundo deportivo.&#127936;&#127944;&#127934;</p>
+      <h2>Nuestra misión</h2>
+      <p>Buscamos que nuestros usuarios sean capaces de adoptar un estilo de vida saludable perdurable en el tiempo. Para ello, proporcionamos
+        información completa y actualizada de un amplio rango de deportes.</p>
     </div>
 </div>
 <div class="bg-image p-5 text-center shadow-1-strong rounded mb-3 text-white" style="background-image: url('/images/deportes.jpg');width:100%;height:200px">
-    <h1 id="textoimg" class="mb-3 h2" style="text-align:right;color:white;padding-bottom:20px;">Hola</h1>
+    <h1 id="textoimg" class="mb-3 h2" style="text-align:right;color:white;padding-bottom:20px;">¡Bienvenido a tu próxima aventura!</h1>
 </div>
 <%- include("footer", {}) %>

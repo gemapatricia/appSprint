@@ -3,6 +3,26 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+#titulo{
+  font: 40px "Brush Script";
+  font-style: oblique;
+  font-weight: bold;
+}
+
+h2{
+  font: 30px "Brush Script";
+  font-style: oblique;
+  background-color:rgb(147, 217, 186);
+  border-radius: 20px;
+  text-align: center;
+}
+
+p{
+  text-align: justify;
+  text-justify: inter-word;
+  font: 20px "Brush Script";
+}
+
 .topnav {
   background-color: rgb(73, 73, 73);
   border-radius: 20px;
