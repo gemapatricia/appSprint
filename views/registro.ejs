@@ -1,3 +1,33 @@
 <%- include("header", {}) %>
 <h1 id="titulo"><%= title %></h1>
+<div class="signupFrm">
+  <form id="formReg" action="/regiter" method="post">
+    <div class="imgcontainer">
+      <img src="/images/registro.png" alt="Avatar" class="avatar">
+    </div>
+    <div class="container">
+      <i style='font-size:15px' class='fas'>&#xf406;</i>
+      <label for="name" form="formReg"><b>Nombre</b>
+        <input class="input" type="text" placeholder="Introduzca su nombre" name="name" required>
+      </label>
+      <i style='font-size:15px' class='fas'>&#xf406;</i>
+      <label for="ap1" form="formReg"><b>Primer apellido</b>
+        <input class="input" type="text" placeholder="Introduzca su primer apellido" name="ap1" required>
+      </label>
+      <i style='font-size:15px' class='fas'>&#xf406;</i>
+      <label for="ap2" form="formReg"><b>Segundo apellido</b>
+        <input class="input" type="text" placeholder="Introduzca su segundo apellido" name="ap2">
+      </label>
+      <i style='font-size:15px' class='fas'>&#xf023;</i>
+      <label for="pass1" form="formReg"><b>Contraseña</b>
+        <input class="input" type="password" placeholder="Introduzca una contraseña" name="pass1">
+      </label>
+      <i style='font-size:15px' class='fas'>&#xf023;</i>
+      <label for="pass2" form="formReg"><b>Repetir contraseña</b>
+        <input class="input" type="password" placeholder="Repetir contraseña" name="pass2">
+      </label>       
+      <button id="botonForm" type="submit">Enviar</button>
+    </div>
+  </form>
+</div>
 <%- include("footer", {}) %>
