@@ -8,14 +8,14 @@ form {
   box-shadow: 0 10px 25px rgba(44, 48, 50, 0.277);
 }
 
+/* Outside border*/
 .signupFrm {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 130vh;
     background-color: white;
-    padding-top: 20px;
-    padding-bottom: 80px;
+    padding-bottom: 50px;
 }
 
 /* Full-width inputs */
