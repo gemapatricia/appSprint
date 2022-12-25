@@ -8,7 +8,7 @@ form {
   box-shadow: 0 10px 25px rgba(44, 48, 50, 0.277);
 }
 
-/* Outside border*/
+/* Outside border register*/
 .signupFrm {
     display: flex;
     justify-content: center;
@@ -18,11 +18,12 @@ form {
     padding-bottom: 50px;
 }
 
+/* Outside border login*/
 .signupLogin {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 60vh;
+    height: 70vh;
     background-color: white;
     padding-bottom: 50px;
 }
