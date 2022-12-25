@@ -18,6 +18,15 @@ form {
     padding-bottom: 50px;
 }
 
+.signupLogin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60vh;
+    background-color: white;
+    padding-bottom: 50px;
+}
+
 /* Full-width inputs */
 .input {
   width: 100%;

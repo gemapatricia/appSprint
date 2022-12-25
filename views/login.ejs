@@ -1,3 +1,20 @@
 <%- include("header", {}) %>
 <h1 id="titulo"><%= title %></h1>
+<div class="signupLogin">
+    <form id="formReg" action="/regiter" method="post">
+      <div class="imgcontainer">
+        <img src="/images/registro.png" alt="Avatar" class="avatar">
+      </div>
+      <div class="container">
+        <i style='font-size:15px' class='fas'>&#xf406;</i>
+        <label for="username" form="formReg"><b>Nombre de usuario</b>
+          <input id="username" class="input" type="text" placeholder="Introduzca el nombre de su cuenta" name="username" required>
+        </label>
+        <i style='font-size:15px' class='fas'>&#xf023;</i>
+        <label for="pass1" form="formReg"><b>Contraseña</b>
+          <input id="pass1" class="input" type="password" placeholder="Introduzca una contraseña" name="pass1" required>
+        </label>
+      </div>
+    </form>
+</div>
 <%- include("footer", {}) %>
