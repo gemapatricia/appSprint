@@ -1,4 +1,13 @@
-.card,  .text-center, .border-info{
+#imagenTienda{
+    padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 20px;
+}
+
+#fichas{
+  height: 400px;
+}
+/*.card,  .text-center, .border-info{
       
     box-shadow: 0px 0px 5px 1px rgb(205, 200, 200);
     padding-right: 10px;
@@ -8,18 +17,13 @@
     border-radius: 5px;
     cursor: default;
     transition: all 400ms ease;
-    /*background: linear-gradient(red, orange);*/
+    width: 180px;
   }
 
   .card:hover{
     box-shadow: 5px 5px 20px rgb(0, 0, 0, 0.4);
     transform: translateY(-3%);
   }
-
-  /*.card-title{
-    font-weight: 400;
-    margin-bottom: 15px;
-  }*/
 
   .zoom {
       transition: transform .2s; 
@@ -41,4 +45,4 @@
     width: 340px;
     float: right;
   }
-
+*/
