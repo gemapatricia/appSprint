@@ -11,6 +11,7 @@ var registroRouter = require('./routes/registro');
 var tiendaRouter = require('./routes/tienda');
 var referentesRouter = require('./routes/referentes');
 var deportistaConcretoRouter = require('./routes/deportistaConcreto');
+var iniciacionRouter = require('./routes/iniciacion');
 
 
 var app = express();
@@ -32,6 +33,7 @@ app.use('/registro', registroRouter);
 app.use('/tienda', tiendaRouter);
 app.use('/referentes', referentesRouter);
 app.use('/deportistaConcreto', deportistaConcretoRouter);
+app.use('/iniciacion', iniciacionRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
