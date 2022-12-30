@@ -47,6 +47,8 @@ En la barra del navegador: localhost:3000
 
 En este momento, puede disfrutar de la aplicación navegando por las distintas secciones.
 
+Para información más detallada, visite la documentación oficial: `docs/memoriaSPRINT.pdf`.
+
 # Logo de Sprint
 
 ![plot](docs/logo.png)
