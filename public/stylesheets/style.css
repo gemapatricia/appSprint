@@ -91,6 +91,12 @@ p{
   z-index: 1;
 }
 
+.dropdown-content h4{
+  padding-left: 10px;
+  padding-right: 10px;
+  color:blue;
+}
+
 .dropdown-content a {
   float: none;
   color: black;
