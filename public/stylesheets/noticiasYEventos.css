@@ -42,7 +42,7 @@
 
 
 .noticiero {
-    margin-bottom:900px;
+    margin-bottom:920px;
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 50px;
@@ -61,7 +61,7 @@
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
     cursor: pointer;
     transition: 500ms;
-    padding-bottom: 0px;
+    padding-bottom: 25px;
     padding-top: 300;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .noticia:hover, #noticiaPrincipal:hover {
-    box-shadow: 0px 20px 20px rgb(30, 166, 23, 0.4);
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
     transform: translateY(-3%);
 }
 
