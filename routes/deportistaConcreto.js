@@ -6,13 +6,4 @@ router.get('/', function(req, res, next) {
   res.render('deportistaConcreto', { title: 'Deportista concreto' });
 });
 
-
-
-
-
-
-
-
-
-
 module.exports = router;

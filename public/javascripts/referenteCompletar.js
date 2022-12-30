@@ -85,9 +85,6 @@ for(let i = 0; i< referentes.length; i++){
     }
 }
 
-            
-//Imprimir en el html
-
 document.getElementById('titleJugador').innerHTML = nombre;
 document.getElementById("izqJugador").style.height = tamanoTweetH[cont] + "%";
 document.getElementById("imgJugador").src = src[cont];
