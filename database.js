@@ -3,14 +3,14 @@ const mysql = require("mariadb");
 const pool1 = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "root",
 });
 
 const pool2 = mysql.createPool({
     host: "localhost",
     database: "sprint",
     user: "root",
-    password: "",
+    password: "root",
   });
 
 pool1.getConnection()
