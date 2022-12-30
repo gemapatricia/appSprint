@@ -1,4 +1,4 @@
-# appSprint
+# **Aplicación Web Sprint**
 
 ## Miembros del proyecto
 Elena Cores, María Calvo, Ramón Merchán y Patricia Herrera.
