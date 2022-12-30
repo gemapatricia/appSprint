@@ -1,0 +1,120 @@
+.urgente {
+    background-color: red;
+    padding: 10px;
+    margin: 20px;
+}
+
+.text2 {
+    color:white;
+    text-transform:uppercase;
+    text-align: center;
+  }
+  .parpadea {
+    
+    animation-name: parpadeo;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  
+    -webkit-animation-name:parpadeo;
+    -webkit-animation-duration: 2.5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+  }
+  
+  @-moz-keyframes parpadeo{  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
+  
+  @-webkit-keyframes parpadeo {  
+    0% { opacity: 1.0; }
+    50% { opacity: 0.0; }
+     100% { opacity: 1.0; }
+  }
+  
+  @keyframes parpadeo {  
+    0% { opacity: 1.0; }
+     50% { opacity: 0.0; }
+    100% { opacity: 1.0; }
+  }
+
+
+.noticiero {
+    margin-bottom:900px;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 50px;
+}
+
+.noticiaTablon {
+    float: left;
+    width: 50%;
+}
+
+#noticiaPrincipal {
+    border-color: blue;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 4px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: 500ms;
+    padding-bottom: 0px;
+    padding-top: 300;
+}
+
+
+.tituloNoticia {
+    text-align: center;
+    margin-top: 10px;
+    text-transform:uppercase;
+
+}
+
+.tituloNoticiaPrincipal {
+    text-align: center;
+    margin-top: 70px;
+    margin-bottom: 50px;
+    font-size: 150%;
+    text-transform:uppercase;
+    color:blue;
+    margin-left: 10px;
+    margin-right: 10px;
+
+
+}
+
+.subtitulo {
+    text-align: center;
+    padding-top: 10px;
+    font-style: oblique;
+    padding-left: 30px;
+    padding-right: 30px;;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+
+.noticia {
+    margin-bottom: 40px;
+    margin-left: 40px;
+    border-color: blue;
+    border-style: solid;
+    border-width: thin;
+    border-radius: 4px;
+    box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: 500ms;
+}
+
+.noticia:hover, #noticiaPrincipal:hover {
+    box-shadow: 0px 20px 20px rgb(30, 166, 23, 0.4);
+    transform: translateY(-3%);
+}
+
+.contenido img{
+    display:block;
+    margin:auto;
+    margin-top: 20px;
+}
