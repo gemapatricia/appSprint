@@ -28,7 +28,7 @@
     border-radius: 4px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
     cursor: pointer;
-    transition: all 400ms ease;
+    transition: 500ms;
 }
 
 .deporte:hover{
