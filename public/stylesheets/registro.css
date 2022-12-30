@@ -70,3 +70,36 @@ img.avatar {
 .container {
   padding: 16px;
 }
+
+#correo {
+  display: none;
+}
+
+#correoi {
+  display: none;
+}
+
+#correoLabel {
+  display: none;
+}
+
+#error{
+  display: none;
+  color: red;
+}
+
+#error1{
+  display: none;
+  color: red;
+}
+
+#error2{
+  display: none;
+  color: red;
+}
+
+#error3{
+  display: none;
+  color: red;
+}
+
