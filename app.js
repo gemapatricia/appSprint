@@ -13,6 +13,7 @@ var referentesRouter = require('./routes/referentes');
 var deportistaConcretoRouter = require('./routes/deportistaConcreto');
 var iniciacionRouter = require('./routes/iniciacion');
 var noticiasYEventosRouter = require('./routes/noticiasYEventos');
+var administradorRouter = require('./routes/administrador');
 
 
 var app = express();
@@ -36,6 +37,7 @@ app.use('/referentes', referentesRouter);
 app.use('/deportistaConcreto', deportistaConcretoRouter);
 app.use('/iniciacion', iniciacionRouter);
 app.use('/noticiasYEventos', noticiasYEventosRouter);
+app.use('/administrador', administradorRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
