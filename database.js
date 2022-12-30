@@ -3,20 +3,27 @@ const mysql = require("mariadb");
 const pool1 = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "",
 });
 
 const pool2 = mysql.createPool({
     host: "localhost",
     database: "sprint",
     user: "root",
-    password: "root",
+    password: "",
   });
 
 pool1.getConnection()
   .then((conn) => {
     console.log("Conexión establecida");
     setUp(conn);
+    conn.query("DELETE FROM user");
+    insertUser("pablo", "sánchez", "martín", "admin", "pablosanchez@gmail.com", "Administrador", "admin");
+    console.log("Usuario admin creado");
+    insertUser("julia", "romero", "lópez", "julia", "juliaromero@gmail.com", "Estándar", "julia123");
+    console.log("Usuario estándar creado");
+    insertUser("mario", "garcía", "garcía", "mario", "mariogarcia@gmail.com", "Premium", "mario");
+    console.log("Usuario premium creado");
     conn.end();
   }).catch((err) => {
     console.log(err);
@@ -49,7 +56,6 @@ function insertUser(name, surname1, surname2=null, user_name, email=null, user_t
         console.log("No se ha podido realizar la insercción");
         conn.end();
     });
-    l
 }
 
 module.exports = {pool1, insertUser};
