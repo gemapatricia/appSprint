@@ -45,9 +45,16 @@
                     <!--<i class="fa fa-caret-down"></i>-->
                 </button>
                 <div class="dropdown-content">
-                    <a href="/login">Inicia sesión</a>
-                    <a href="/registro">Regístrate</a>
-                    <a href="#">Cerrar sesión</a>
+                    <% if (user) { %>
+                        <p>Eres <%= user %> y tu rol es <%= rol %></p>
+                        <% if (rol == "Administrador") { %>
+                            <a href="/administrador">Administración de usuarios</a>
+                            <% }%>
+                        <a href="#">Cerrar sesión</a>
+                    <% } else { %>
+                        <a href="/login">Inicia sesión</a>
+                        <a href="/registro">Regístrate</a>
+                    <% }%>
                 </div>
             </div>          
         </div>
