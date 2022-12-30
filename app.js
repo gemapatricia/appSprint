@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+const session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -27,6 +28,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  resave: false,
+  saveUninitialized: false,
+  secret: 'El secreto que queramos nosotros'
+}));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -37,7 +43,22 @@ app.use('/referentes', referentesRouter);
 app.use('/deportistaConcreto', deportistaConcretoRouter);
 app.use('/iniciacion', iniciacionRouter);
 app.use('/noticiasYEventos', noticiasYEventosRouter);
-app.use('/administrador', administradorRouter);
+app.use('/administrador', restrict, administradorRouter);
+app.use('/logout', function(req, res, next){
+  req.session.destroy(function(){
+    res.redirect("/");
+  })
+});
+
+function restrict(req, res, next){
+  if(req.session.user){
+    next();
+  } else {
+    req.session.error = "Unauthorized access";
+    res.redirect("/login");
+  }
+}
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
