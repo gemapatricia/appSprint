@@ -17,7 +17,7 @@ pool1.getConnection()
   .then(async (conn) => {
     console.log("Conexión establecida");
     setUp(conn);
-    const existenUsuarios = await checkContent(conn);
+    const existenUsuarios = await checkUsers(conn);
     if (!existenUsuarios){
       console.log("Por aquí");
       insertUser("pablo", "sánchez", "martín", "admin", "pablosanchez@gmail.com", "Administrador", "admin");
@@ -49,7 +49,7 @@ function setUp(conn){
 
 // Métodos para interactuar con la BBDD
 
-async function checkContent(conn){
+async function checkUsers(conn){
   try{
     let sql = `SELECT COUNT(id_user) AS numero FROM user`;
     let consulta = await conn.query(sql);
