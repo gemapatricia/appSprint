@@ -14,16 +14,20 @@ const pool2 = mysql.createPool({
   });
 
 pool1.getConnection()
-  .then((conn) => {
+  .then(async (conn) => {
     console.log("Conexión establecida");
     setUp(conn);
-    conn.query("DELETE FROM user");
-    insertUser("pablo", "sánchez", "martín", "admin", "pablosanchez@gmail.com", "Administrador", "admin");
-    console.log("Usuario admin creado");
-    insertUser("julia", "romero", "lópez", "julia", "juliaromero@gmail.com", "Estándar", "julia123");
-    console.log("Usuario estándar creado");
-    insertUser("mario", "garcía", "garcía", "mario", "mariogarcia@gmail.com", "Premium", "mario");
-    console.log("Usuario premium creado");
+    const existenUsuarios = await checkContent(conn);
+    if (!existenUsuarios){
+      console.log("Por aquí");
+      insertUser("pablo", "sánchez", "martín", "admin", "pablosanchez@gmail.com", "Administrador", "admin");
+      console.log("Usuario admin creado");
+      insertUser("julia", "romero", "lópez", "julia", "juliaromero@gmail.com", "Estándar", "julia123");
+      console.log("Usuario estándar creado");
+      insertUser("mario", "garcía", "garcía", "mario", "mariogarcia@gmail.com", "Premium", "mario");
+      console.log("Usuario premium creado");
+    }
+    else console.log("La base de datos tiene usuarios");
     conn.end();
   }).catch((err) => {
     console.log(err);
@@ -43,7 +47,25 @@ function setUp(conn){
     console.log("Tabla user OK");
 }
 
-// Métodos para interactuar con la DB
+// Métodos para interactuar con la BBDD
+
+async function checkContent(conn){
+  try{
+    let sql = `SELECT COUNT(id_user) AS numero FROM user`;
+    let consulta = await conn.query(sql);
+    let filas = parseInt(consulta[0].numero);
+    //console.log(filas);
+    
+    if (filas > 0) return true;
+    else return false;
+  }
+  catch{(err) => {
+      console.log(err);
+      console.log("No se ha podido realizar la query");
+  };
+  }
+}
+
 
 // Insertar usuarios
 function insertUser(name, surname1, surname2="NULL", user_name, email="NULL", user_type, password){
@@ -76,4 +98,4 @@ function checkUserExists(user_name){
   });
 }
 
-module.exports = {pool1, pool2, insertUser};
+module.exports = {pool1, pool2, insertUser, checkUserExists};
