@@ -10,90 +10,39 @@ router.get('/', function(req, res, next) {
 
 
 router.post('/', function(req, res, next) {
-  console.log("HA PULSADO");
-  
+  // se obtienen los datos del formulario
   let pwd = req.body.pass1;
   let usr = req.body.username;
 
-  if(usr && pwd) {
+  if(usr && pwd) { //comprueba si el usuario ha rellenado todos los campos del formulario
 
-    /*
-    if(database.consultaContrasenna(usr) == pwd){
-      
-      rolSelect = database.consultaRol(usr);
-      req.session.user = usr;
-      req.session.rol = rolSelect;
-      res.redirect("/");
-    }
-    else{
-      req.session.error = "Usuario o contraseña incorrecta";
-      res.redirect("/login");
-    }
-
-
-
-
-
-
-    // crear conexión
-    // query (select) con las variables que me han pasado
-    /*
-    valor = database.consultaUser(usr, pwd);
-    console.log("valor: " + valor);
-    
-    if (valor){ //true
-      res.redirect("/");
-    }
-    else{ //false
-      res.redirect("/login");
-    }
-    
-    var con = database.pool2.getConnection();
-    con.connect(function(err) {
-      if (err) throw err;
-      con.query("SELECT name, address FROM customers", function (err, result, fields) {
-        if (err) throw err;
-        console.log(result);
-      });
-    });
-
-
-    /*
     database.pool2.getConnection()
-    .then((conn) => {
-      console.log("entra en el then");
-        let sql = `SELECT password FROM user WHERE user_name ="${usr}";`;
-        conn.query(sql, function (err, result, fields){
-          if (err) throw err;
-          let hdp = result;
-          console.log("ey: "+hdp);
-        });
-        conn.end();
-    }).catch((err) => { //aqui si entra hay error pqno reconoce conn
+    .then( async (conn) => {
+      //select en el que obtiene el rol del usuario. En el where: usr y pwd
+        var consulta = await conn.query(`SELECT user_type FROM user WHERE user_name ="${usr}" AND password ="${pwd}";`);
+
+        if (consulta.length > 0){ //si ha obtenido el rol, significa que usr y pwd coinciden
+          req.session.user = usr;
+          req.session.rol = consulta[0].user_type;
+          conn.end();
+          res.redirect("/");
+        }
+        else{ //psw y usr no coinciden
+          conn.end();
+          req.session.error = "Usuario o contraseña incorrectos";
+          res.redirect("/login");
+        }
+
+    }).catch((err) => {
         console.log(err);
         console.log("No se ha podido realizar el select");
-        conn.end();
     });
 
-
-   console.log("usr: "+usr);
-   let hola = database.consultaUser(usr);
-   console.log("vuelve de la bd: " + hola);
-   
-   */
-
-
-
-
-
   }
-  else{
-    req.session.error = "Falta rellenar o usr o psw";
+  else{ // El usuario no ha rellenado los campos ude usr o psw en el formulario
+    req.session.error = "Falta rellenar los campos usr o psw";
     res.redirect("/login");
   }
-
-  res.redirect("/");
-
 });
 
 
