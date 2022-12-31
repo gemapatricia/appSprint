@@ -8,7 +8,12 @@ router.get('/', function(req, res, next) {
 });
 
 router.post("/", function (req, res, next) {
+  let name = req.body.name;
+  let surname1 = req.body.ap1;
+  let surname2 = req.body.ap2;
   let userName = req.body.username;
+  let email = req.body.correo;
+  let userType = req.body.tipoUsuario;
   let pass = req.body.pass1;
   let pass2 = req.body.pass2;
 
@@ -18,7 +23,8 @@ router.post("/", function (req, res, next) {
   }
   else {
     res.redirect("/login");
-    database.insertUser("patricia", "herrera", "martín", "patricia", "patricia@gmail.com", "Estándar", "patricia");
+    database.insertUser(name, surname1, surname2, userName, email, userType, pass);
+    //database.insertUser("patricia", "herrera", "martín", "patricia", "patricia@gmail.com", "Estándar", "patricia");
   }
   /**
   if (users[user]) {

@@ -3,14 +3,14 @@ const mysql = require("mariadb");
 const pool1 = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "root",
 });
 
 const pool2 = mysql.createPool({
     host: "localhost",
     database: "sprint",
     user: "root",
-    password: "",
+    password: "root",
   });
 
 pool1.getConnection()
@@ -44,7 +44,9 @@ function setUp(conn){
 }
 
 // Métodos para interactuar con la DB
-function insertUser(name, surname1, surname2=null, user_name, email=null, user_type, password){
+
+// Insertar usuarios
+function insertUser(name, surname1, surname2="NULL", user_name, email="NULL", user_type, password){
     pool2.getConnection()
     .then((conn) => {
         let sql = `INSERT INTO user (name, surname1, surname2, user_name, email, user_type, password) 
@@ -57,6 +59,21 @@ function insertUser(name, surname1, surname2=null, user_name, email=null, user_t
     });
 }
 
+// Comprobar si un usuario existe
+function checkUserExists(user_name){
+  pool2.getConnection()
+  .then((conn) => {
+      let sql = `SELECT id_user FROM user WHERE user_name="${user_name}"`;
+      let consulta = conn.query(sql);
+      conn.end();
 
+      if (consulta.length > 0) return true;
+      else return false;
+      
+  }).catch((err) => {
+      console.log(err);
+      console.log("No se ha podido realizar la query");
+  });
+}
 
 module.exports = {pool1, pool2, insertUser};
