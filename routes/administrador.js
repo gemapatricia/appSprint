@@ -4,7 +4,7 @@ var database = require('../database');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('administrador', { title: 'Administración de usuarios', user: false, rol: false });
+  res.render('administrador', { title: 'Administración de usuarios', user: req.session.user, rol: req.session.rol });
 });
 
 module.exports = router;

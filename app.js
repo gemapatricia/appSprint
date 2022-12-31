@@ -51,7 +51,7 @@ app.use('/logout', function(req, res, next){
 });
 
 function restrict(req, res, next){
-  if(req.session.user){
+  if(req.session.user){ //req.session.rol == "Administrador" poner más adelante
     next();
   } else {
     req.session.error = "Unauthorized access";

@@ -4,7 +4,7 @@ var database = require('../database');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('registro', { title: 'Registro de nuevos usuarios', user: false, rol: false });
+  res.render('registro', { title: 'Registro de nuevos usuarios', user: req.session.user, rol: req.session.rol });
 });
 
 router.post("/", function (req, res, next) {

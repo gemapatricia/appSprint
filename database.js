@@ -58,4 +58,90 @@ function insertUser(name, surname1, surname2=null, user_name, email=null, user_t
     });
 }
 
-module.exports = {pool1, insertUser};
+//select con user_name y password que me devuelve si son lo mismo
+function consultaContrasenna(user_name){
+  console.log("entra en la funcion");
+  pool2.getConnection()
+  .then((conn) => {
+    console.log("entra en el then");
+      let sql = `SELECT password FROM user WHERE user_name ="${user_name}";`;
+      conn.query(sql, function (err, result, fields){
+        return result;
+        if (err) throw err;
+        console.log("ey: "+result);
+      });
+      conn.end();
+  }).catch((err) => { //aqui si entra hay error pqno reconoce conn
+      console.log(err);
+      console.log("No se ha podido realizar el select");
+      conn.end();
+  });
+
+
+
+  /*
+  var conn = mysql.createConnection({
+    host: "localhost",
+    database: "sprint",
+    user: "root",
+    password: "root"
+  });
+
+  mysql.createConnection({host: 'localhost', database: 'sprint', user: 'root', password: 'root'})
+    .then(conn => {
+      let sql = "SELECT user_name, password FROM user WHERE user_name ='admin'  AND password ='admin'";
+      conn.query(sql)
+      //conn.query('SELECT * FROM user ')
+        .then(result => {
+          console.log(result.length); // [{ "1": 1 }]
+          if (result.length ==  1) {
+            conn.end();
+            return true;}
+            
+            else {
+              conn.end();
+            return false;}
+     
+        })
+        .catch(err => { 
+          //handle query error
+        });
+    })
+    .catch(err => {
+      //handle connection error
+    });
+
+
+
+  /*
+  console.log("SE METE EN CONSULTAUSER");
+  pool2.getConnection()
+  .then((conn) => {
+      let sql = `SELECT user_name, password FROM user WHERE user_name ="${user_name}" AND password ="${password}"`;
+      console.log("HACE LA QUERY");
+      conn.query(sql, function (err, result, fields) {
+        console.log("result: " + result);
+        if (err) throw err;
+        if (result.length>0){
+          conn.end();
+          return true;
+        }
+        else{
+          conn.end();
+          return false; //redirect a login
+        }
+      });
+  }).catch((err) => {
+      console.log(err);
+      console.log("No se ha podido realizar la insercción");
+      conn.end();
+  });
+  */
+
+}
+
+function consultaRol(user_name){
+
+}
+
+module.exports = {pool1, pool2, insertUser, consultaContrasenna, consultaRol};
