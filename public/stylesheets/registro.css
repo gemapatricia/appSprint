@@ -13,8 +13,9 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 130vh;
+    height: 140vh;
     background-color: white;
+    padding-top: 20px;
     padding-bottom: 50px;
 }
 
@@ -23,8 +24,9 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 70vh;
+    height: 75vh;
     background-color: white;
+    padding-top: 20px;
     padding-bottom: 50px;
 }
 
