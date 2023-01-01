@@ -19,7 +19,6 @@ pool1.getConnection()
     setUp(conn);
     const existenUsuarios = await checkUsers(conn);
     if (!existenUsuarios){
-      console.log("Por aquí");
       insertUser("pablo", "sánchez", "martín", "admin", "pablosanchez@gmail.com", "Administrador", "admin");
       console.log("Usuario admin creado");
       insertUser("julia", "romero", "lópez", "julia", "juliaromero@gmail.com", "Estándar", "julia123");
@@ -80,10 +79,14 @@ function insertUser(name, surname1, surname2, user_name, email, user_type, passw
                        , if("${email}"='',null,"${email}")
                        , "${user_type}"
                        , "${password}")`;
-        conn.query(sql);
+        conn.query(sql)
+          .catch(err => {
+            console.log("No se ha podido realizar la inserción");  
+            console.log(err);
+          });
         conn.end();
     }).catch((err) => {
-      console.log("No se ha podido realizar la inserción");  
+      console.log("No se puedo conectar");  
       console.log(err);
     });
 }
