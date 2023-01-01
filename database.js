@@ -49,6 +49,7 @@ function setUp(conn){
 
 // Métodos para interactuar con la BBDD
 
+// Comprobar si existen usuarios en la BBDD
 async function checkUsers(conn){
   try{
     let sql = `SELECT COUNT(id_user) AS numero FROM user`;
@@ -80,9 +81,11 @@ function insertUser(name, surname1, surname2, user_name, email, user_type, passw
                        , "${user_type}"
                        , "${password}")`;
         conn.query(sql)
-          .catch(err => {
-            console.log("No se ha podido realizar la inserción");  
+          .catch(err => { 
+            mostrarError(err.errno, err.text);
             console.log(err);
+            console.log(err.text);
+            console.log("No se ha podido realizar la inserción"); 
           });
         conn.end();
     }).catch((err) => {
@@ -91,12 +94,38 @@ function insertUser(name, surname1, surname2, user_name, email, user_type, passw
     });
 }
 
+// Mostrar al usuario la excepción generada
+function mostrarError(error, texto){
+  let posicion = 0;
+  let patron = "";
+  let campo = "";
+  
+  switch (error) {
+    case 1062:
+      patron = "key ";
+      posicion = texto.search(patron)+patron.length;
+      campo = texto.substring(posicion);
+      switch (campo){
+        case ("'user_name'"):
+          console.log('Ya existe un usuario registrado con ese nombre de usuario');
+          break;
+        case ("'email'"):
+          console.log('Ya existe un usuario registrado con ese email');
+          break;
+      }
+      break;
+    case 'CONSTRAINT `CHK_Premium` failed for `sprint`.`user`':
+      console.log('El usuario premium tiene que introducir un email');
+      break;
+  }
+}
+
 // Comprobar si un usuario existe
-function checkUserExists(user_name){
+/**async function checkUserExists(user_name){
   pool2.getConnection()
-  .then((conn) => {
+  .then(async (conn) => {
       let sql = `SELECT id_user FROM user WHERE user_name="${user_name}"`;
-      let consulta = conn.query(sql);
+      let consulta = await conn.query(sql);
       conn.end();
 
       if (consulta.length > 0) return true;
@@ -106,6 +135,6 @@ function checkUserExists(user_name){
       console.log(err);
       console.log("No se ha podido realizar la query");
   });
-}
+}*/
 
-module.exports = {pool1, pool2, insertUser, checkUserExists};
+module.exports = {pool1, pool2, insertUser};
