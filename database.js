@@ -97,6 +97,7 @@ function insertUser(name, surname1, surname2, user_name, email, user_type, passw
 // Mostrar al usuario la excepción generada
 function mostrarError(error, texto){
   let posicion = 0;
+  let posicionFin = 0;
   let patron = "";
   let campo = "";
   
@@ -114,27 +115,20 @@ function mostrarError(error, texto){
           break;
       }
       break;
-    case 'CONSTRAINT `CHK_Premium` failed for `sprint`.`user`':
-      console.log('El usuario premium tiene que introducir un email');
+    case 4025:
+      patron = "CONSTRAINT ";
+      posicion = texto.search(patron)+patron.length;
+      patron = " failed"
+      posicionFin = texto.search(patron);
+      campo = texto.substring(posicion, posicionFin);
+      console.log(campo);
+      switch (campo){
+        case ("`CHK_Premium`"):
+          console.log('Para registrar un usuario premium, hay que introducir un email');
+          break;
+      }
       break;
   }
 }
-
-// Comprobar si un usuario existe
-/**async function checkUserExists(user_name){
-  pool2.getConnection()
-  .then(async (conn) => {
-      let sql = `SELECT id_user FROM user WHERE user_name="${user_name}"`;
-      let consulta = await conn.query(sql);
-      conn.end();
-
-      if (consulta.length > 0) return true;
-      else return false;
-      
-  }).catch((err) => {
-      console.log(err);
-      console.log("No se ha podido realizar la query");
-  });
-}*/
 
 module.exports = {pool1, pool2, insertUser};
