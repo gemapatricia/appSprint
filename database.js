@@ -40,10 +40,11 @@ function setUp(conn){
     conn.query("CREATE DATABASE IF NOT EXISTS sprint CHARACTER SET='utf8' COLLATE='utf8_bin'");
     conn.query("USE sprint");
     console.log("Base de datos sprint OK");
-    conn.query("CREATE TABLE IF NOT EXISTS user (id_user INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL," 
-                + " surname1 VARCHAR(50) NOT NULL, surname2 VARCHAR(50), user_name VARCHAR(50) NOT NULL UNIQUE,"
-                + " user_type VARCHAR(50) NOT NULL check (user_type in ('Estándar', 'Premium', 'Administrador'))," 
-                + " email VARCHAR(50) UNIQUE, password VARCHAR(20) NOT NULL, PRIMARY KEY (id_user))");
+    conn.query("CREATE TABLE IF NOT EXISTS user (id_user INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL" 
+                + ", surname1 VARCHAR(50) NOT NULL, surname2 VARCHAR(50), user_name VARCHAR(50) NOT NULL UNIQUE"
+                + ", user_type VARCHAR(50) NOT NULL check (user_type in ('Estándar', 'Premium', 'Administrador'))" 
+                + ", email VARCHAR(50) UNIQUE, password VARCHAR(20) NOT NULL, PRIMARY KEY (id_user)"
+                + ", constraint CHK_Premium check( (user_type='Premium' AND email IS NOT NULL) OR user_type!='Premium'))");
     console.log("Tabla user OK");
 }
 
@@ -68,16 +69,22 @@ async function checkUsers(conn){
 
 
 // Insertar usuarios
-function insertUser(name, surname1, surname2="NULL", user_name, email="NULL", user_type, password){
+function insertUser(name, surname1, surname2, user_name, email, user_type, password){
     pool2.getConnection()
     .then((conn) => {
         let sql = `INSERT INTO user (name, surname1, surname2, user_name, email, user_type, password) 
-                  VALUES ("${name}", "${surname1}", "${surname2}", "${user_name}", "${email}", "${user_type}", "${password}")`;
+                  VALUES ("${name}"
+                       , "${surname1}"
+                       , if("${surname2}"='',null,"${surname2}")
+                       , "${user_name}"
+                       , if("${email}"='',null,"${email}")
+                       , "${user_type}"
+                       , "${password}")`;
         conn.query(sql);
         conn.end();
     }).catch((err) => {
-        console.log(err);
-        console.log("No se ha podido realizar la insercción");
+      console.log("No se ha podido realizar la inserción");  
+      console.log(err);
     });
 }
 
