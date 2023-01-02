@@ -1,18 +1,17 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
-/* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
-}*/
-/*Cards*/
+
 .container-card{
     width: 100%;
     display: flex;
     max-width: 1100px;
     margin: auto;
-    margin-left: 250px;
+   /* margin-left: 250px;*/
 }
+#contGeneralRef{
+       margin-left: 250px;
+
+}
+
 .title-cards{
     width: 100%;
     max-width: 1080px;
@@ -96,17 +95,18 @@
     transition-duration: 0.4s;
     background-color: white;
     color: black;
-    border: 2px solid #555555;
+    border: 2px solid #2954e1;
+    /*border: 2px solid #555555;*/
     border-radius: 8px;
     font-size: 15px;
 }
 
+
 #boton:hover {
-    background-color: #4CAF50; /* Green */
+    /*background-color: #4CAF50; /* Green */
+    background-color: #008CBA;
     color: white;
     border-radius: 8px;
     font-size: 15px;
-    background-color: #555555;
-    color: white;
 }
 
