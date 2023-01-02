@@ -17,6 +17,8 @@ function selector() {
       mostrar({ id: "formReg" }, "#correo");
     if ($("#correoLabel").css("display") == "none")
       mostrar({ id: "formReg" }, "#correoLabel");
+  }else{
+ 
   }
 }
 
@@ -47,12 +49,15 @@ boton.addEventListener("click", function (e) {
   var politicacontra = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
   var mayusculasClave =  /[A-Z]/;
   //var mayusculasClave = /^[A-Z]+[.]$/;
+  var comprobarCorreo = /^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
   let correo = document.getElementById("correo").value;
 
   if(correo != null && condicionCorreo){
     if (/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(correo)){
+   // if (comprobarCorreo.test(correo)){
      } else {
+      condiciones = false;
       document.getElementById("correo").style.backgroundColor = 'red';
       if ($("#error3").css("display") == "none")
         mostrar({ id: "formReg" }, "#error3");
