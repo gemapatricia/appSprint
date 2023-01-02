@@ -15,6 +15,7 @@ var deportistaConcretoRouter = require('./routes/deportistaConcreto');
 var iniciacionRouter = require('./routes/iniciacion');
 var noticiasYEventosRouter = require('./routes/noticiasYEventos');
 var deporteConcretoRouter = require('./routes/deporteConcreto');
+var noticiaConcretaRouter = require('./routes/noticiaConcreta');
 var administradorRouter = require('./routes/administrador');
 
 
@@ -45,6 +46,7 @@ app.use('/deportistaConcreto', deportistaConcretoRouter);
 app.use('/iniciacion', iniciacionRouter);
 app.use('/noticiasYEventos', noticiasYEventosRouter);
 app.use('/deporteConcreto', deporteConcretoRouter);
+app.use('/noticiaConcreta', noticiaConcretaRouter);
 app.use('/administrador', restrict, administradorRouter);
 app.use('/logout', function(req, res, next){
   req.session.destroy(function(){
