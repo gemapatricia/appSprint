@@ -75,7 +75,7 @@ let src = ["https://cdn.fansshare.com/photos/ikercasillas/full-iker-casillas-div
             "https://images.squarespace-cdn.com/content/v1/5d3d604f1c3c2e00014fe64d/1633146119664-AY4ZCIVT6R99U58CHMCD/usykjosh.jpg",
             "https://boxeodecolombia.com/wp-content/uploads/2021/12/Naoya-Inoue.png"];
 
-let tamanoTweetH = [50,120,90,50,80,38,40,110, 85,200,38,38,38,38,60,38,38,38,65,38];
+let tamanoTweetH = [88,180,140,90,138,55,55,183, 140,320,60,55,55,60,98,55,60,55,105,55];
 
 
 let cont = 0;

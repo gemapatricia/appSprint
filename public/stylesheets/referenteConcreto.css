@@ -1,5 +1,3 @@
-
-
 .caja{
     display: inline-block;
 }
@@ -40,8 +38,8 @@
     position: absolute;
     margin-top: 20px;
     width: 30%;
-   /* height: 50%;*/
+    height: 100%;
     margin: 1% 1%;
     overflow-y: scroll;
-    margin-left: 150px;
+    margin-left: 80px;
 }
