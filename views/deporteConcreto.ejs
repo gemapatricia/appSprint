@@ -1,0 +1,45 @@
+<%- include("header", {}) %>
+    <h1 id="titulo">
+        <%= title %>
+    </h1>
+    <link rel="stylesheet" href="/stylesheets/deportes.css">
+    
+    <div id="deporteGeneral" class="descripcion">
+        <h2 id="sportName"></h2>
+        <div class="introduccionSport">
+            <p id="pSport"></p><img id="imgSport" height="360" width="480" src="">
+        </div>
+
+        <button type="button" class="collapsibleSp"><b>Reglamento y reglas básicas</b></button>
+            <div class="contentSport">
+                <p id="ruleSport"></p>
+            </div>
+        <button type="button" class="collapsibleSp"><b>Técnicas generales</b></button>
+            <div class="contentSport">
+                <p id="tecnicas"></p>
+            </div>
+        <button type="button" class="collapsibleSp"><b>Ejercicios para el entrenamiento</b></button>
+        <div class="contentSport">
+            <p id="entrenamiento"></p>
+        </div>
+    </div>
+    <br>
+
+    <h2><b>¡Vídeo tutoriales para aprender a jugar!</b></h2>
+    <br>
+    <div class="videoCaja">
+        <div class="PrimerVid">
+            <iframe id="vidSport1" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer; 
+            autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="vidSport2" width="560" height="315" src="" title="YouTube video player" frameborder="0" allow="accelerometer;
+             autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+   
+    
+
+    
+
+    <script type="text/javascript" src="\javascripts\deporteCompletar.js"></script>
+    <script type="text/javascript" src="\javascripts\deporteConcreto.js"></script>
+<%- include("footer", {}) %>

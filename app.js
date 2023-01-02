@@ -14,6 +14,7 @@ var referentesRouter = require('./routes/referentes');
 var deportistaConcretoRouter = require('./routes/deportistaConcreto');
 var iniciacionRouter = require('./routes/iniciacion');
 var noticiasYEventosRouter = require('./routes/noticiasYEventos');
+var deporteConcretoRouter = require('./routes/deporteConcreto');
 var administradorRouter = require('./routes/administrador');
 
 
@@ -43,12 +44,13 @@ app.use('/referentes', referentesRouter);
 app.use('/deportistaConcreto', deportistaConcretoRouter);
 app.use('/iniciacion', iniciacionRouter);
 app.use('/noticiasYEventos', noticiasYEventosRouter);
+app.use('/deporteConcreto', deporteConcretoRouter);
 app.use('/administrador', restrict, administradorRouter);
 app.use('/logout', function(req, res, next){
   req.session.destroy(function(){
     res.redirect("/");
   })
-});
+}); 
 
 function restrict(req, res, next){
   if(req.session.user){ //req.session.rol == "Administrador" poner más adelante
