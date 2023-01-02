@@ -15,7 +15,6 @@ let src = ["https://falcfans.com/wp-content/uploads/2020/10/Four-children-playin
             "https://img.olympicchannel.com/images/image/private/t_social_share_thumb/f_auto/primary/dyzftci4wvroohbg4tnq",
             "https://media.istockphoto.com/id/654106834/photo/badminton-mixed-doubles.jpg?s=612x612&w=0&k=20&c=M2Unv8wit1nfOriRvgSiJQS9UcQYM9K-1773ogNmR8Q="
                         ];
-            //<img src="/images/dificil.png" alt="dificultad difícil" width="110" height="50">
 
 let rule = ["<p id='ruleSport'> El fútbol se juega con un balón redondo y dos equipos de 11 jugadores cada uno. El balón debe de ingresar a la portería del equipo rival para anotar un gol. Quien más goles tenga, gana el partido. Si el resultado es igual número de goles para cada equipo, se considera un empate." + 
             "<ol><li>En juegos oficiales los partidos de fútbol se dividen en dos tiempos, cada uno de 45 minutos, con un descanso de 15.</li><li>El balón está dentro del juego mientras no haya falta. La pelota está fuera de cancha si cruza la meta o la línea de banda.</li><li>Se considera fuera de juego (offside) si un jugador le da pase a su compañero y éste está más cerca a la línea de meta opuesta en comparación al balón y al último adversario. En este caso, el árbitro otorgará al rival un tiro libre indirecto (pase a otro jugador).</li><li>El árbitro muestra tarjeta amarilla para amonestar a un jugador (por infringir el reglamento) y una tarjeta roja para expulsarlo (por conducta violenta contra el adversario o impedir un gol con la mano).</li></ol></p>",
