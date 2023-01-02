@@ -46,9 +46,10 @@
                 </button>
                 <div class="dropdown-content">
                     <% if (user) { %>
-                        <h4>Eres <%= user %> y tu rol es <%= rol %></h4>
+                        <h4>Usuario: <%= user %></h4>
+                        <h4>Rol: <%= rol %></h4>
                         <% if (rol == "Administrador") { %>
-                            <a href="/administrador">Administración de usuarios</a>
+                            <a href="/administrador">Administrar</a>
                             <% }%>
                         <a href="/logout">Cerrar sesión</a>
                     <% } else { %>

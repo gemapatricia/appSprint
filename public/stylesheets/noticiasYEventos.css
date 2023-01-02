@@ -2,6 +2,7 @@
     background-color: red;
     padding: 10px;
     margin: 20px;
+    border-radius: 10px;
 }
 
 .text2 {
@@ -42,7 +43,7 @@
 
 
 .noticiero {
-    margin-bottom:920px;
+    margin-bottom:1050px;
     margin-left: 30px;
     margin-right: 30px;
     margin-top: 50px;
@@ -76,7 +77,6 @@
 .tituloNoticiaPrincipal {
     text-align: center;
     margin-top: 70px;
-    margin-bottom: 50px;
     font-size: 150%;
     text-transform:uppercase;
     color:blue;
@@ -114,8 +114,9 @@
 }
 
 .contenido img{
+    
     display:block;
     margin:auto;
-    margin-top: 20px;
+    margin-top: 43px;
 }
 

@@ -67,3 +67,9 @@
 #boton:hover{
     cursor: pointer;
 }
+
+.botonEvento{
+    background-color: #008CBA; 
+    font-size: 30px;
+    border-radius: 7px;
+}
