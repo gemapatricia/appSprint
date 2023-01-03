@@ -60,4 +60,15 @@
             </div>          
         </div>
     </div>
+    <% if (message) { %>
+        <div class="message">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <%- message %>
+        </div>
+    <% } if (error) { %>
+        <div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+            <%- error %>
+        </div>
+    <% } %>
     <div class="container">
