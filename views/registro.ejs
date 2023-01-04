@@ -9,41 +9,41 @@
       <i style='font-size:15px' class='fas'>&#xf2c2;</i>
       <label for="name" form="formReg"><b>Nombre*</b>
          <!--required-->
-        <input id="name" class="input" type="text" placeholder="Introduzca su nombre" name="name">
+        <input id="name" class="input" type="text" placeholder="Introduzca su nombre" name="name" value="<%= name %>">
       </label>
       <i style='font-size:15px' class='fas'>&#xf2c2;</i>
       <label for="ap1" form="formReg"><b>Primer apellido*</b>
         <!--required-->
-        <input id="ap1" class="input" type="text" placeholder="Introduzca su primer apellido" name="ap1" >
+        <input id="ap1" class="input" type="text" placeholder="Introduzca su primer apellido" name="ap1" value="<%= ap1 %>">
       </label>
       <i style='font-size:15px' class='fas'>&#xf2c2;</i>
       <label for="ap2" form="formReg"><b>Segundo apellido</b>
-        <input id="ap2" class="input" type="text" placeholder="Introduzca su segundo apellido" name="ap2">
+        <input id="ap2" class="input" type="text" placeholder="Introduzca su segundo apellido" name="ap2" value="<%= ap2 %>">
       </label>
       <i style='font-size:15px' class='fas'>&#xf406;</i>
       <label for="username" form="formReg"><b>Nombre de usuario*</b>
         <!--required-->
-        <input id="username" class="input" type="text" placeholder="Introduzca un nombre para su cuenta" name="username" >
+        <input id="username" class="input" type="text" placeholder="Introduzca un nombre para su cuenta" name="username" value="<%= username %>">
       </label>
       <label for="tipoUsuario">
         <i style='font-size:15px' class='fas'>&#xf406;</i>
         <b>Seleccione un perfil de usuario:</b>
       </label>
       <select onchange="selector()" id="tipoUsuario" class="input" name="tipoUsuario" form="formReg">
-        <option value="Estándar">Estándar (usuario gratuito)</option>
-        <option value="Premium">Premium (usuario de pago)</option>
+        <option value="Estándar" <% if (tipoUsuario=='Estándar') { %> selected <% } %>> Estándar</option>
+        <option value="Premium"  <% if (tipoUsuario=='Premium')  { %> selected <% } %>> Premium </option>
       </select>
 
       <div id="correoPremium">
       <i style='font-size:15px' class='fas'>&#xf406;</i>
-      <label id="correoLabel" for="correo" form="formReg"><b>Correo Electrónico</b>
-        <input id="correo" class="input" placeholder="Introduzca un correo" name="correo">
+      <label id="correoLabel" for="correo" form="formReg"><b>Correo Electrónico*</b>
+        <input id="correo" class="input" placeholder="Introduzca un correo" name="correo" value="<%= correo %>">
       </label>
     </div>
       <label id="error3">Error. El email ingresado no es correcto.</label>
 
       <i style='font-size:15px' class='fas'>&#xf023;</i>
-      <label for="pass1" form="formReg"><b>Contraseña</b>
+      <label for="pass1" form="formReg"><b>Contraseña*</b>
 
         <li class="tooltip" id="errorContra">
           <i class='fas fa-info-circle'></i> 
@@ -54,7 +54,7 @@
         <input id="pass1" class="input" type="password" placeholder="Introduzca una contraseña" name="pass1" >
       </label>
       <i style='font-size:15px' class='fas'>&#xf023;</i>
-      <label for="pass2" form="formReg"><b>Repetir contraseña</b>
+      <label for="pass2" form="formReg"><b>Repetir contraseña*</b>
         <!--required-->
         <input id="pass2" class="input" type="password" placeholder="Repetir contraseña" name="pass2" >
       </label>   
@@ -72,5 +72,6 @@
 </div>
 
 <script src="/javascripts/comprobaciones.js"></script>
+<script> selector();</script>
 
 <%- include("footer", {}) %>

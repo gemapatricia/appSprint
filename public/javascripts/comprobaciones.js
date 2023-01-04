@@ -9,7 +9,7 @@ debugger;
 function selector() {
   var combo = document.getElementById("tipoUsuario");
   var selected = combo.options[combo.selectedIndex].text;
-  if (selected == "Premium (usuario de pago)") {
+  if (selected == "Premium") {
     condicionCorreo = true;
     if ($("#correoPremium").css("display") == "none")
       mostrar({ id: "formReg" }, "#correoPremium");

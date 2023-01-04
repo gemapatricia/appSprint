@@ -19,11 +19,11 @@ pool1.getConnection()
     setUp(conn);
     const existenUsuarios = await checkUsers(conn);
     if (!existenUsuarios){
-      insertUser("pablo", "sánchez", "martín", "admin", "pablosanchez@gmail.com", "Administrador", "admin");
+      insertUser("Pablo", "Sánchez", "Martín", "admin", "pablosanchez@gmail.com", "Administrador", "Admin123");
       console.log("Usuario admin creado");
-      insertUser("julia", "romero", "lópez", "julia", "", "Estándar", "julia123");
+      insertUser("Julia", "Romero", "López", "julia", "", "Estándar", "Julia123");
       console.log("Usuario estándar creado");
-      insertUser("mario", "garcía", "garcía", "mario", "mariogarcia@gmail.com", "Premium", "mario");
+      insertUser("Mario", "García", "García", "mario", "mariogarcia@gmail.com", "Premium", "Mario123");
       console.log("Usuario premium creado");
     }
     else console.log("La base de datos tiene usuarios");
@@ -102,7 +102,7 @@ async function insertUser(name, surname1, surname2, user_name, email, user_type,
       mensajeError = "No se puedo conectar";  
       console.log(err);
     });
-    console.log("insertUser -> " + mensajeError);
+    //console.log("insertUser -> " + mensajeError);
     return mensajeError;
 }
 
@@ -145,7 +145,7 @@ function mostrarError(error, texto){
       }
       break;
   }
-  console.log("mostrarError -> " + mensajeError);
+  //console.log("mostrarError -> " + mensajeError);
   return mensajeError;
 }
 
