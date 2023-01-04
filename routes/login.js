@@ -24,6 +24,7 @@ router.post('/', function(req, res, next) {
         if (consulta.length > 0){ //si ha obtenido el rol, significa que usr y pwd coinciden
           req.session.user = usr;
           req.session.rol = consulta[0].user_type;
+          req.session.message = `¡Bienvenido ${req.session.user}!`;
           conn.end();
           res.redirect("/");
         }
