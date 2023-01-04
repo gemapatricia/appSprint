@@ -22,8 +22,17 @@ router.post("/", function (req, res, next) {
     res.redirect("/registro");
   }
   else {
-    res.redirect("/login");
-    database.insertUser(name, surname1, surname2, userName, email, userType, pass);
+    async function insertarUsuario(){
+      let mensajeError = "";
+      mensajeError = await database.insertUser(name, surname1, surname2, userName, email, userType, pass);
+      if (mensajeError!=""){
+        req.session.error = mensajeError;
+        console.log("insertarUsuario -> " + mensajeError);
+        res.redirect("/registro");
+      }
+      else res.redirect("/login");
+    }
+    insertarUsuario();
   }
 });
 

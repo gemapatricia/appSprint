@@ -77,9 +77,9 @@ async function checkUsers(conn){
 
 
 // Insertar usuarios
-function insertUser(name, surname1, surname2, user_name, email, user_type, password){
-    pool2.getConnection()
-    .then((conn) => {
+async function insertUser(name, surname1, surname2, user_name, email, user_type, password){
+    await pool2.getConnection()
+    .then( async (conn) => {
         let sql = `INSERT INTO user (name, surname1, surname2, user_name, email, user_type, password) 
                   VALUES ("${name}"
                        , "${surname1}"
@@ -88,18 +88,19 @@ function insertUser(name, surname1, surname2, user_name, email, user_type, passw
                        , if("${email}"='',null,"${email}")
                        , "${user_type}"
                        , "${password}")`;
-        conn.query(sql)
+        await conn.query(sql)
           .catch(err => { 
-            mostrarError(err.errno, err.text);
+            mensajeError = mostrarError(err.errno, err.text);
             console.log(err);
             console.log(err.text);
-            console.log("No se ha podido realizar la inserción"); 
           });
         conn.end();
     }).catch((err) => {
-      console.log("No se puedo conectar");  
+      mensajeError = "No se puedo conectar";  
       console.log(err);
     });
+    console.log("insertUser -> " + mensajeError);
+    return mensajeError;
 }
 
 // Mostrar al usuario la excepción generada
@@ -108,6 +109,7 @@ function mostrarError(error, texto){
   let posicionFin = 0;
   let patron = "";
   let campo = "";
+  let mensajeError = "";
   
   switch (error) {
     case 1062:
@@ -116,10 +118,10 @@ function mostrarError(error, texto){
       campo = texto.substring(posicion);
       switch (campo){
         case ("'user_name'"):
-          console.log('Ya existe un usuario registrado con ese nombre de usuario');
+          mensajeError = 'Ya existe un usuario registrado con ese nombre de usuario';
           break;
         case ("'email'"):
-          console.log('Ya existe un usuario registrado con ese email');
+          mensajeError = 'Ya existe un usuario registrado con ese email';
           break;
       }
       break;
@@ -132,11 +134,13 @@ function mostrarError(error, texto){
       console.log(campo);
       switch (campo){
         case ("`CHK_Premium`"):
-          console.log('Para registrar un usuario premium, hay que introducir un email');
+          mensajeError = 'Para registrar un usuario premium, hay que introducir un email';
           break;
       }
       break;
   }
+  console.log("mostrarError -> " + mensajeError);
+  return mensajeError;
 }
 
 module.exports = {pool1, pool2, insertUser};
