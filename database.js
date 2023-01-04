@@ -43,8 +43,9 @@ function setUp(conn){
                 + ", surname1 VARCHAR(50) NOT NULL, surname2 VARCHAR(50), user_name VARCHAR(50) NOT NULL UNIQUE"
                 + ", user_type VARCHAR(50) NOT NULL check (user_type in ('Estándar', 'Premium', 'Administrador'))" 
                 + ", email VARCHAR(50) UNIQUE, password VARCHAR(20) NOT NULL, PRIMARY KEY (id_user)"
-                + ", constraint CHK_UserType check( (user_type in ('Premium', 'Administrador') AND email IS NOT NULL)"
-                + "                                 OR (user_type='Estándar' AND email IS NULL)))");
+                + ", constraint CHK_UserTypeNoStandard check( (user_type in ('Premium', 'Administrador')"
+                + "                                            AND email IS NOT NULL) OR user_type='Estándar')"
+                + ", constraint CHK_UserTypeStandard check( (user_type='Estándar' AND email IS NULL) OR user_type!='Estándar'))");
     console.log("Tabla user OK");
     conn.query("CREATE TABLE IF NOT EXISTS opinion (id_opinion INT NOT NULL AUTO_INCREMENT"
                 + ", deporte VARCHAR(50) NOT NULL check (deporte in ('Fútbol', 'Baloncesto', 'Tenis', 'Boxeo', 'Badminton'))" 
@@ -135,8 +136,11 @@ function mostrarError(error, texto){
       campo = texto.substring(posicion, posicionFin);
       console.log(campo);
       switch (campo){
-        case ("`CHK_UserType`"):
-          mensajeError = 'Para registrar un usuario premium o administrador, hay que introducir un email';
+        case ("`CHK_UserTypeNoStandard`"):
+          mensajeError = 'Para registrar un usuario premium o administrador hay que introducir un email';
+          break;
+        case ("`CHK_UserTypeStandard`"):
+          mensajeError = 'Para registrar un usuario estándar no hay que introducir un email';
           break;
       }
       break;
