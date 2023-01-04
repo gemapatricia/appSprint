@@ -29,6 +29,37 @@ p{
   font: 20px "Brush Script";
 }
 
+.message {
+  margin-top: 15px;
+  padding: 5px;
+  background-color: #27a857;
+  color: white;
+  border-radius: 10px;
+}
+
+.alert {
+  margin-top: 15px;
+  padding: 5px;
+  background-color: #f44336;
+  color: white;
+  border-radius: 10px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
 .topnav {
   background-color: rgb(73, 73, 73);
   border-radius: 25px;

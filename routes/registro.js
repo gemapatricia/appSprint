@@ -24,17 +24,7 @@ router.post("/", function (req, res, next) {
   else {
     res.redirect("/login");
     database.insertUser(name, surname1, surname2, userName, email, userType, pass);
-    //database.insertUser("patricia", "herrera", "martín", "patricia", "patricia@gmail.com", "Estándar", "patricia");
   }
-  /**
-  if (users[user]) {
-    req.session.error = "Este usuario ya existe";
-    res.redirect("/registro");
-  } else {
-    req.session.message = "Usuario registrado";
-    users.register(user, pass);
-    res.redirect("/login");
-  }*/
 });
 
 module.exports = router;

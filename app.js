@@ -36,6 +36,18 @@ app.use(session({
   secret: 'El secreto que queramos nosotros'
 }));
 
+app.use(function(req, res, next){
+  let error = req.session.error;
+  let message = req.session.message;
+  delete req.session.error;
+  delete req.session.message;
+  res.locals.error = "";
+  res.locals.message = "";
+  if (error) res.locals.error = `<p>${error}</p>`;
+  if (message) res.locals.message = `<p>${message}</p>`;
+  next();
+});
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/login', loginRouter);
@@ -55,10 +67,10 @@ app.use('/logout', function(req, res, next){
 }); 
 
 function restrict(req, res, next){
-  if(req.session.rol == "Administrador"){ //req.session.rol == "Administrador" poner más adelante
+  if(req.session.rol == "Administrador"){
     next();
   } else {
-    req.session.error = "Unauthorized access";
+    req.session.error = "Acceso no autorizado";
     res.redirect("/login");
   }
 }

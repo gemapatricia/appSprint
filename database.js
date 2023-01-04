@@ -45,6 +45,14 @@ function setUp(conn){
                 + ", email VARCHAR(50) UNIQUE, password VARCHAR(20) NOT NULL, PRIMARY KEY (id_user)"
                 + ", constraint CHK_Premium check( (user_type='Premium' AND email IS NOT NULL) OR user_type!='Premium'))");
     console.log("Tabla user OK");
+    conn.query("CREATE TABLE IF NOT EXISTS opinion (id_opinion INT NOT NULL AUTO_INCREMENT"
+                + ", deporte VARCHAR(50) NOT NULL check (deporte in ('Fútbol', 'Baloncesto', 'Tenis', 'Boxeo', 'Badminton'))" 
+                + ", contenido VARCHAR(300) NOT NULL"
+                + ", timestamp VARCHAR(20) NOT NULL" 
+                + ", id_user INT NOT NULL"
+                + ", PRIMARY KEY (id_opinion)"
+                + ", FOREIGN KEY (id_user) REFERENCES user(id_user))");
+    console.log("Tabla opinion OK");
 }
 
 // Métodos para interactuar con la BBDD
