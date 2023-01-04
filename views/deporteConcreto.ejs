@@ -34,12 +34,19 @@
             <iframe id="vidSport2" src="" title="YouTube video player" frameborder="0" allow="accelerometer;
              autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
-    </div>
-    <h2><b>Opiniones</b></h2>
-    <div class="reviews">
-        <div id="postUp"></div>
-        <input type="text" id="comment-boxSport" placeholder="Enter comment">
-        <button id="post" style="font-size: 25px;">Post</button> 
+    </div> 
+    <div class="reviewBox"> <%# Solo aparece esta zona si es premium %>
+        <% if (rol == "Premium") { %>
+            <h2><b>Opiniones</b></h2>
+            <div class="reviews">
+                <div id="postUp"></div>
+                <input type="text" name="opinion" id="comment-boxSport" placeholder="Enter comment">
+                <button id="post" style="font-size: 25px;">Post</button> 
+            </div>
+        <% } else { %>
+            <h4>(*Para dejar algún comentario o ver la experiencia de los demás, regístrate como usuario premium en nuestra página)</h4>
+        <% }%>
+        
     </div>
 
     

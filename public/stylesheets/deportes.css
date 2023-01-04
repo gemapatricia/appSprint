@@ -16,7 +16,7 @@
   color: rgb(255, 255, 255);
 }
 
-.button.collapsibleSp.active{
+.button.collapsibleSp.active {
   background-color:#fff;
   color:#000;
   border-radius:4px 4px 0 0;
@@ -40,9 +40,10 @@
   padding-bottom: 40px;
 }
 
-.reviews{
+.reviews {
   padding-bottom: 40px;
 }
+
 
 #imgSport {
   padding-top: 30px;
@@ -70,7 +71,7 @@
 }
 
 #comment-boxSport {
-    border-radius: 5px;
+  border-radius: 5px;
     width: 100%;
     height: 100px;
     padding: 10px;
@@ -93,3 +94,4 @@
 #post {
   float:right;
 }
+
