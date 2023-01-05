@@ -66,13 +66,13 @@ boton.addEventListener("click", function (e) {
   var politicacontra = /(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
   var mayusculasClave = /[A-Z]/;
   var numeroClave = /\d/;
-  var comprobarCorreo = /^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/;
+  var comprobarCorreo = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
   let correo = document.getElementById("correo").value;
 
   if (correo.length != 0 && condicionCorreo) {
 
-    if (/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/.test(correo)) {
+    if (comprobarCorreo.test(correo)) {
       $("#error3").css("display", "none");
     } else {
       condiciones = false;

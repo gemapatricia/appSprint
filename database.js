@@ -45,7 +45,9 @@ function setUp(conn){
                 + ", email VARCHAR(50) UNIQUE, password VARCHAR(20) NOT NULL, PRIMARY KEY (id_user)"
                 + ", constraint CHK_UserTypeNoStandard check( (user_type in ('Premium', 'Administrador')"
                 + "                                            AND email IS NOT NULL) OR user_type='Estándar')"
-                + ", constraint CHK_UserTypeStandard check( (user_type='Estándar' AND email IS NULL) OR user_type!='Estándar'))");
+                + ", constraint CHK_UserTypeStandard   check( (user_type='Estándar' AND email IS NULL) OR user_type!='Estándar')"
+                + ", constraint CHK_EmailPattern       check (email    REGEXP '^\\\\w+([.-_+]?\\\\w+)*@\\\\w+([.-]?\\\\w+)*(\\\\.\\\\w{2,10})+$')"
+                + ", constraint CHK_PasswordPattern    check (password REGEXP '^(?=\\\\w*\\\\d)(?=\\\\w*[A-Z])(?=\\\\w*[a-z])\\\\S{8,16}$'))");
     console.log("Tabla user OK");
     conn.query("CREATE TABLE IF NOT EXISTS opinion (id_opinion INT NOT NULL AUTO_INCREMENT"
                 + ", contenido VARCHAR(300) NOT NULL"
@@ -140,6 +142,12 @@ function mostrarError(error, texto){
           break;
         case ("`CHK_UserTypeStandard`"):
           mensajeError = 'Para registrar un usuario estándar no hay que introducir un email';
+          break;
+        case ("`CHK_EmailPattern`"):
+          mensajeError = 'El formato de correo es incorrecto';
+          break;
+        case ("`CHK_PasswordPattern`"):
+          mensajeError = 'La contraseña no cumple el patrón';
           break;
       }
       break;
