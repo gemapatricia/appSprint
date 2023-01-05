@@ -48,7 +48,6 @@ function setUp(conn){
                 + ", constraint CHK_UserTypeStandard check( (user_type='Estándar' AND email IS NULL) OR user_type!='Estándar'))");
     console.log("Tabla user OK");
     conn.query("CREATE TABLE IF NOT EXISTS opinion (id_opinion INT NOT NULL AUTO_INCREMENT"
-                + ", deporte VARCHAR(50) NOT NULL check (deporte in ('Fútbol', 'Baloncesto', 'Tenis', 'Boxeo', 'Badminton'))" 
                 + ", contenido VARCHAR(300) NOT NULL"
                 + ", timestamp VARCHAR(20) NOT NULL" 
                 + ", id_user INT NOT NULL"
