@@ -13,18 +13,20 @@ router.get('/', function(req, res, next) {
                          , username   : req.session.username
                          , tipoUsuario: req.session.tipoUsuario
                          , correo     : req.session.correo
-                         });
+                         , campoError : req.session.campoError
+                        });
 });
 
 router.post("/", function (req, res, next) {
-  let name     = req.session.name        = req.body.name;
-  let surname1 = req.session.ap1         =  req.body.ap1;
-  let surname2 = req.session.ap2         = req.body.ap2;
-  let userName = req.session.username    = req.body.username;
-  let email    = req.session.correo      = req.body.correo;
-  let userType = req.session.tipoUsuario = req.body.tipoUsuario;
-  let pass     = req.body.pass1;
-  let pass2    = req.body.pass2;
+  let name       = req.session.name        = req.body.name;
+  let surname1   = req.session.ap1         =  req.body.ap1;
+  let surname2   = req.session.ap2         = req.body.ap2;
+  let userName   = req.session.username    = req.body.username;
+  let email      = req.session.correo      = req.body.correo;
+  let userType   = req.session.tipoUsuario = req.body.tipoUsuario;
+  let pass       = req.body.pass1;
+  let pass2      = req.body.pass2;
+  let campoError = req.session.campoError  = "";
 
   let errores = validarDatos(name, surname1, surname2, userName, email, userType, pass, pass2);
   if (errores[0]) {
@@ -34,9 +36,10 @@ router.post("/", function (req, res, next) {
   else {
     async function insertarUsuario(){
       let mensajeError = "";
-      mensajeError = await database.insertUser(name, surname1, surname2, userName, email, userType, pass);
+      [mensajeError, campoError] = await database.insertUser(name, surname1, surname2, userName, email, userType, pass);
       if (mensajeError!=""){
         req.session.error = mensajeError;
+        req.session.campoError = campoError;
         //console.log("insertarUsuario -> " + mensajeError);
         res.redirect("/registro");
       }

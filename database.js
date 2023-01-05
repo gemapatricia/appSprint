@@ -82,6 +82,7 @@ async function checkUsers(conn){
 // Insertar usuarios
 async function insertUser(name, surname1, surname2, user_name, email, user_type, password){
   let mensajeError = "";
+  let campoError = "";
     await pool2.getConnection()
     .then( async (conn) => {
         let sql = `INSERT INTO user (name, surname1, surname2, user_name, email, user_type, password) 
@@ -94,7 +95,7 @@ async function insertUser(name, surname1, surname2, user_name, email, user_type,
                        , "${password}")`;
         await conn.query(sql)
           .catch(err => { 
-            mensajeError = mostrarError(err.errno, err.text);
+            [mensajeError,campoError] = mostrarError(err.errno, err.text);
             console.log(err);
             console.log(err.text);
           });
@@ -104,7 +105,7 @@ async function insertUser(name, surname1, surname2, user_name, email, user_type,
       console.log(err);
     });
     //console.log("insertUser -> " + mensajeError);
-    return mensajeError;
+    return [mensajeError,campoError];
 }
 
 // Mostrar al usuario la excepción generada
@@ -114,6 +115,7 @@ function mostrarError(error, texto){
   let patron = "";
   let campo = "";
   let mensajeError = "";
+  let campoError = "";
   
   switch (error) {
     case 1062:
@@ -123,9 +125,11 @@ function mostrarError(error, texto){
       switch (campo){
         case ("'user_name'"):
           mensajeError = 'Ya existe un usuario registrado con ese nombre de usuario';
+          campoError = "username";
           break;
         case ("'email'"):
           mensajeError = 'Ya existe un usuario registrado con ese email';
+          campoError = "correo";
           break;
       }
       break;
@@ -153,7 +157,7 @@ function mostrarError(error, texto){
       break;
   }
   //console.log("mostrarError -> " + mensajeError);
-  return mensajeError;
+  return [mensajeError, campoError];
 }
 
 module.exports = {pool1, pool2, insertUser};
