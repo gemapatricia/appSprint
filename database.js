@@ -42,12 +42,11 @@ function setUp(conn){
     conn.query("CREATE TABLE IF NOT EXISTS user (id_user INT NOT NULL AUTO_INCREMENT, name VARCHAR(50) NOT NULL" 
                 + ", surname1 VARCHAR(50) NOT NULL, surname2 VARCHAR(50), user_name VARCHAR(50) NOT NULL UNIQUE"
                 + ", user_type VARCHAR(50) NOT NULL check (user_type in ('Estándar', 'Premium', 'Administrador'))" 
-                + ", email VARCHAR(50) UNIQUE, password VARCHAR(20) NOT NULL, PRIMARY KEY (id_user)"
+                + ", email VARCHAR(50) UNIQUE, password VARCHAR(41) NOT NULL, PRIMARY KEY (id_user)"
                 + ", constraint CHK_UserTypeNoStandard check( (user_type in ('Premium', 'Administrador')"
                 + "                                            AND email IS NOT NULL) OR user_type='Estándar')"
                 + ", constraint CHK_UserTypeStandard   check( (user_type='Estándar' AND email IS NULL) OR user_type!='Estándar')"
-                + ", constraint CHK_EmailPattern       check (email    REGEXP '^\\\\w+([.-_+]?\\\\w+)*@\\\\w+([.-]?\\\\w+)*(\\\\.\\\\w{2,10})+$')"
-                + ", constraint CHK_PasswordPattern    check (password REGEXP '^(?=\\\\w*\\\\d)(?=\\\\w*[A-Z])(?=\\\\w*[a-z])\\\\S{8,16}$'))");
+                + ", constraint CHK_EmailPattern       check (email    REGEXP '^\\\\w+([.-_+]?\\\\w+)*@\\\\w+([.-]?\\\\w+)*(\\\\.\\\\w{2,10})+$'))");
     console.log("Tabla user OK");
     conn.query("CREATE TABLE IF NOT EXISTS opinion (id_opinion INT NOT NULL AUTO_INCREMENT"
                 + ", contenido VARCHAR(300) NOT NULL"
@@ -92,7 +91,7 @@ async function insertUser(name, surname1, surname2, user_name, email, user_type,
                        , "${user_name}"
                        , if("${email}"='',null,"${email}")
                        , "${user_type}"
-                       , "${password}")`;
+                       , PASSWORD("${password}"))`;
         await conn.query(sql)
           .catch(err => { 
             [mensajeError,campoError] = mostrarError(err.errno, err.text);
@@ -149,9 +148,6 @@ function mostrarError(error, texto){
           break;
         case ("`CHK_EmailPattern`"):
           mensajeError = 'El formato de correo es incorrecto';
-          break;
-        case ("`CHK_PasswordPattern`"):
-          mensajeError = 'La contraseña no cumple el patrón';
           break;
       }
       break;

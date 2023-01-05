@@ -19,7 +19,7 @@ router.post('/', function(req, res, next) {
     database.pool2.getConnection()
     .then( async (conn) => {
       //select en el que obtiene el rol del usuario. En el where: usr y pwd
-        var consulta = await conn.query(`SELECT user_type FROM user WHERE user_name ="${usr}" AND password ="${pwd}";`);
+        var consulta = await conn.query(`SELECT user_type FROM user WHERE user_name ="${usr}" AND password = PASSWORD("${pwd}");`);
 
         if (consulta.length > 0){ //si ha obtenido el rol, significa que usr y pwd coinciden
           req.session.user = usr;
