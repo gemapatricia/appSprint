@@ -1,10 +1,12 @@
 table {
     font-family: "Lucida Sans Unicode";
     font-size: 12px;
-    margin: 45px;
+    margin: auto;
+    margin-bottom: 30px;
     width: 480px;
     text-align: left;
     border-collapse: collapse;
+
 }
 
 th {
