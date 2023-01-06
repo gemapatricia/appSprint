@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var database = require('../database');
-const readline = require("readline");
+//const readline = require("readline");
 const { getDiffieHellman } = require('crypto');
 /*const interface = readline.createInterface({
     input: process.stdin,
@@ -33,14 +33,17 @@ router.get('/', function(req, res, next) {
         //"<td><button id="+consulta[i].id_user+" onclick = "+alerta()+">&#x274C;</button></td>" +
         //"<td><button id='boton'>&#x274C;</button></td>" +
         //"<td><button id="+consulta[i].id_user+" onClick='click_here(this.id)' type='button'>&#x274C;</button></td>" +
-        "<td><button id="+consulta[i].user_name+" onClick='alerta(this.id)' type='button'>&#x274C;</button></td>" +
+        //"<td><form action='/administrador' method='post'><button id="+consulta[i].id_user+" onClick='click_here(this.id)' type='button'>&#x274C;</button></form></td>" +
+        //"<td><form action='/administrador/delete:id' method='post'><button id="+consulta[i].user_name+" onclick='document.forms[0].action+='/'+this.id;return true;'type='submit'>&#x274C;</button></form></td>" +
+        "<td><form action='/administrador/delete"+consulta[i].user_name+"' method='post'><button id="+consulta[i].user_name+" type='submit'>&#x274C;</button></form></td>" +
+        //"<td><button id="+consulta[i].user_name+" onClick='alerta(this.id)' type='submit'>&#x274C;</button></td>" +
         "</tr>";
       }
       
       result += '</table>';
       result += "<p id='ejemplo'>En este párrafo se mostrará la opción clickada por el usuario</p>";
 
-
+      conn.end();
       res.render('administrador', { title: 'Administración de usuarios', user: req.session.user, rol: req.session.rol, content: result });
 
   }).catch((err) => {
@@ -50,12 +53,21 @@ router.get('/', function(req, res, next) {
 
 
 });
-/*
-router.post('/', function(req, res, next) {
-  console.log("HOLA");
-  res.redirect("/");
+
+router.post('/delete:id', function(req, res, next) {
+  let valor = req.params.id;
+  database.pool2.getConnection().then( async (conn) => {
+    await conn.query(`DELETE FROM user WHERE user_name = "${valor}";`);
+    conn.end();
+}).catch((err) => {
+    console.log(err);
+    console.log("No se ha podido realizar la consulta");
 });
--*/
+  res.redirect("/administrador");
+});
+
+
+
 /*function alerta(){
   var mensaje;
   var opcion = confirm("Clicka en Aceptar o Cancelar");
