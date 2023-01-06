@@ -13,7 +13,7 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 140vh;
+    height: 110vh;
     background-color: white;
     padding-top: 20px;
     padding-bottom: 50px;
@@ -24,7 +24,7 @@ form {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 75vh;
+    height: 65vh;
     background-color: white;
     padding-top: 20px;
     padding-bottom: 50px;

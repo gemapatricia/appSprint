@@ -14,6 +14,7 @@ function selector() {
     if ($("#correoPremium").css("display") == "none")
       mostrar({ id: "formReg" }, "#correoPremium");
   } else {
+    document.getElementById("correo").value = "";
     $("#correoPremium").css("display", "none");
   }
 }
