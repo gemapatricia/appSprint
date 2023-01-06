@@ -1,0 +1,31 @@
+#reviewForm{
+    background: #92d9b9;
+    padding: 5px;
+    width: 100%;  
+}
+
+#inputComment{
+    flex-grow: 1;
+    width: 90%;
+    height: 30px;
+}
+
+#comments{
+    list-style-type: none;
+}
+
+#comments > li:nth-child(odd){
+    background: lightblue;
+}
+
+#send {
+    font-size: 19px;
+}
+
+#postUp {
+    background: ghostwhite; 
+    padding: 1px; 
+    border: 1px solid lightgray; 
+    margin: 1px;
+    height: 300px;
+}

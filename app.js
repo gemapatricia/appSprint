@@ -17,7 +17,7 @@ var noticiasYEventosRouter = require('./routes/noticiasYEventos');
 var deporteConcretoRouter = require('./routes/deporteConcreto');
 var noticiaConcretaRouter = require('./routes/noticiaConcreta');
 var administradorRouter = require('./routes/administrador');
-
+var opinionRouter = require('./routes/opinion');
 
 var app = express();
 
@@ -60,6 +60,7 @@ app.use('/noticiasYEventos', noticiasYEventosRouter);
 app.use('/deporteConcreto', deporteConcretoRouter);
 app.use('/noticiaConcreta', noticiaConcretaRouter);
 app.use('/administrador', restrict, administradorRouter);
+app.use('/opinion', restrict, opinionRouter); /*comprueba si necesita un restrict*/
 app.use('/logout', function(req, res, next){
   req.session.destroy(function(){
     res.redirect("/");
@@ -67,7 +68,7 @@ app.use('/logout', function(req, res, next){
 }); 
 
 function restrict(req, res, next){
-  if(req.session.rol == "Administrador"){
+  if(req.session.rol == "Administrador" || req.session.rol == "Premium"){
     next();
   } else {
     req.session.error = "Acceso no autorizado";

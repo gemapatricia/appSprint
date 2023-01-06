@@ -2,7 +2,6 @@
     <h1 id="titulo">
         <%= title %>
     </h1>
-    <link rel="stylesheet" href="/stylesheets/deportes.css">
     
     <div id="deporteGeneral" class="descripcion">
         <h2 id="sportName"></h2>
@@ -36,15 +35,8 @@
         </div>
     </div> 
     <div class="reviewBox"> <%# Solo aparece esta zona si es premium %>
-        <% if (rol == "Premium") { %>
-            <h2><b>Opiniones</b></h2>
-            <div class="reviews">
-                <div id="postUp"></div>
-                <input type="text" name="opinion" id="comment-boxSport" placeholder="Enter comment">
-                <button id="post" style="font-size: 25px;">Post</button> 
-            </div>
-        <% } else { %>
-            <h4>(*Para dejar algún comentario o ver la experiencia de los demás, regístrate como usuario premium en nuestra página)</h4>
+        <% if (rol == "Estándar") { %>
+            <h4>(*Para dejar algún comentario o ver la experiencia de los demás, regístrate como usuario premium en nuestra página)</h4>  
         <% }%>
         
     </div>
