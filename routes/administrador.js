@@ -28,16 +28,20 @@ router.get('/', function(req, res, next) {
         "<td>" + consulta[i].surname2 + "</td>" +
         "<td>" + consulta[i].user_name + "</td>" +
         "<td>" + consulta[i].user_type + "</td>" +
-        "<td>" + consulta[i].email + "</td>" +
+        "<td>" + consulta[i].email + "</td>";
         //"<td><button id="+consulta[i].id_user+">&#x274C;</button></td>" +
         //"<td><button id="+consulta[i].id_user+" onclick = "+alerta()+">&#x274C;</button></td>" +
         //"<td><button id='boton'>&#x274C;</button></td>" +
         //"<td><button id="+consulta[i].id_user+" onClick='click_here(this.id)' type='button'>&#x274C;</button></td>" +
         //"<td><form action='/administrador' method='post'><button id="+consulta[i].id_user+" onClick='click_here(this.id)' type='button'>&#x274C;</button></form></td>" +
         //"<td><form action='/administrador/delete:id' method='post'><button id="+consulta[i].user_name+" onclick='document.forms[0].action+='/'+this.id;return true;'type='submit'>&#x274C;</button></form></td>" +
-        "<td><form action='/administrador/delete"+consulta[i].user_name+"' method='post'><button id="+consulta[i].user_name+" type='submit'>&#x274C;</button></form></td>" +
+        
+        if(consulta[i].user_name != "admin"){
+          result += "<td><form action='/administrador/delete"+consulta[i].user_name+"' method='post'><button id="+consulta[i].user_name+" type='submit'>&#x274C;</button></form></td>";
+        }
+        //"<td><form action='/administrador/delete"+consulta[i].user_name+"' method='post'><button id="+consulta[i].user_name+" type='submit'>&#x274C;</button></form></td>" +
         //"<td><button id="+consulta[i].user_name+" onClick='alerta(this.id)' type='submit'>&#x274C;</button></td>" +
-        "</tr>";
+        result += "</tr>";
       }
       
       result += '</table>';
