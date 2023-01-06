@@ -32,12 +32,13 @@ router.get('/', function(req, res, next) {
         //"<td><button id="+consulta[i].id_user+">&#x274C;</button></td>" +
         //"<td><button id="+consulta[i].id_user+" onclick = "+alerta()+">&#x274C;</button></td>" +
         //"<td><button id='boton'>&#x274C;</button></td>" +
-        "<td><form action='/administrador' method='post'><button id="+consulta[i].id_user+" onClick='click_here(this.id)' type='button'>&#x274C;</button></form></td>" +
+        //"<td><button id="+consulta[i].id_user+" onClick='click_here(this.id)' type='button'>&#x274C;</button></td>" +
+        "<td><button id="+consulta[i].user_name+" onClick='alerta(this.id)' type='button'>&#x274C;</button></td>" +
         "</tr>";
       }
       
       result += '</table>';
-      //result += "<p id='ejemplo'>En este párrafo se mostrará la opción clickada por el usuario</p>";
+      result += "<p id='ejemplo'>En este párrafo se mostrará la opción clickada por el usuario</p>";
 
 
       res.render('administrador', { title: 'Administración de usuarios', user: req.session.user, rol: req.session.rol, content: result });
@@ -49,22 +50,21 @@ router.get('/', function(req, res, next) {
 
 
 });
-
+/*
 router.post('/', function(req, res, next) {
   console.log("HOLA");
   res.redirect("/");
 });
-
+-*/
 /*function alerta(){
-  console.log("HA PULSADO EL BOTÓN");
-  //var mensaje = "Hola";
-  //var opcion = confirm("Clicka en Aceptar o Cancelar");
-  //if (opcion == true) {
-  //  mensaje = "Has clickado OK";
-	//} else {
-  //  mensaje = "Has clickado Cancelar";
-	//}
-	//document.getElementById("ejemplo").innerHTML = mensaje;
+  var mensaje;
+  var opcion = confirm("Clicka en Aceptar o Cancelar");
+  if (opcion == true) {
+    mensaje = "Has clickado OK";
+	} else {
+    mensaje = "Has clickado Cancelar";
+	}
+	document.getElementById("ejemplo").innerHTML = mensaje;
 }*/
 
 /*
