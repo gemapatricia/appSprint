@@ -1,6 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var database = require('../database');
+const readline = require("readline");
+const { getDiffieHellman } = require('crypto');
+/*const interface = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});*/
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -23,11 +29,16 @@ router.get('/', function(req, res, next) {
         "<td>" + consulta[i].user_name + "</td>" +
         "<td>" + consulta[i].user_type + "</td>" +
         "<td>" + consulta[i].email + "</td>" +
-        "<td><button>&#x274C;</button></td>" +
+        //"<td><button id="+consulta[i].id_user+">&#x274C;</button></td>" +
+        //"<td><button id="+consulta[i].id_user+" onclick = "+alerta()+">&#x274C;</button></td>" +
+        //"<td><button id='boton'>&#x274C;</button></td>" +
+        "<td><form action='/administrador' method='post'><button id="+consulta[i].id_user+" onClick='click_here(this.id)' type='button'>&#x274C;</button></form></td>" +
         "</tr>";
       }
       
       result += '</table>';
+      //result += "<p id='ejemplo'>En este párrafo se mostrará la opción clickada por el usuario</p>";
+
 
       res.render('administrador', { title: 'Administración de usuarios', user: req.session.user, rol: req.session.rol, content: result });
 
@@ -39,5 +50,34 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.post('/', function(req, res, next) {
+  console.log("HOLA");
+  res.redirect("/");
+});
+
+/*function alerta(){
+  console.log("HA PULSADO EL BOTÓN");
+  //var mensaje = "Hola";
+  //var opcion = confirm("Clicka en Aceptar o Cancelar");
+  //if (opcion == true) {
+  //  mensaje = "Has clickado OK";
+	//} else {
+  //  mensaje = "Has clickado Cancelar";
+	//}
+	//document.getElementById("ejemplo").innerHTML = mensaje;
+}*/
+
+/*
+function alerta(){
+  interface.question("Are you xyz? (y/n) ", function(ans) {
+    if (ans == "y" || ans == "yes") {
+        console.log("Hello there xyz.");
+    } else {
+        console.log("So what is your name?");
+    }
+    // pause the interface so the program can exit
+    interface.pause();
+});
+}*/
 
 module.exports = router;
