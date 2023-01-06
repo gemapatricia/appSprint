@@ -25,6 +25,12 @@ pool1.getConnection()
       console.log("Usuario estándar creado");
       insertUser("Mario", "García", "García", "mario", "mariogarcia@gmail.com", "Premium", "Mario123");
       console.log("Usuario premium creado");
+      //borrar
+      insertOpiniones("Me ha gustado", "04/01/2023", 1);
+      insertOpiniones("No me ha gustado", "04/01/2023", 2);
+      insertOpiniones("Se puede mejorar", "04/01/2023", 3);
+      insertOpiniones("Fatal", "04/01/2023", 3);
+      insertOpiniones("Genial", "04/01/2023", 2);
     }
     else console.log("La base de datos tiene usuarios");
     conn.end();
@@ -105,6 +111,28 @@ async function insertUser(name, surname1, surname2, user_name, email, user_type,
     });
     //console.log("insertUser -> " + mensajeError);
     return [mensajeError,campoError];
+}
+
+//deporte,contenido,timestamp,id_user
+// Insertar Opiniones
+async function insertOpiniones(contenido, timestamp, id_user){
+  await pool2.getConnection()
+  .then( async (conn) => {
+      let sql = `INSERT INTO opinion (contenido, timestamp, id_user) 
+                VALUES ("${contenido}"
+                     , "${timestamp}"
+                     , "${id_user}")`;
+      console.log("Se ha registrado las opiniones");
+      await conn.query(sql)
+        .catch(err => { 
+          console.log("No se ha podido realizar la query");
+          console.log(err);
+        });
+      conn.end();
+  }).catch((err) => {
+    console.log("No se puedo conectar");  
+    console.log(err);
+  });
 }
 
 // Mostrar al usuario la excepción generada
