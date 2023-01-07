@@ -17,7 +17,7 @@ router.get('/', function (req, res, next) {
 
         var usuario = await conn.query(`SELECT name FROM user WHERE id_user = ` + consulta[i].id_user);
         result += "<div class='opinionesInd'>"
-        result += "<dt class = 'usuario'>" + usuario[0].name + ": </dt>" +
+        result += "<dt class = 'usuario'>" + usuario[0].name + "  ("+consulta[i].timestamp+"):  </dt>" +
           "<dd>" + consulta[i].contenido + "</dd> <br>";
         result += "</div>";
 
