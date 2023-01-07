@@ -3,11 +3,14 @@
 <ul id="comments"></ul>
 <div id="postUp"><%- opiniones%></div>
 <div>
-    <form id="reviewForm">
-        <input id="inputComment" type="text" placeholder="Escribir un comentario" name="comment">
-        <button id="send">Send</button>
+    <form id="reviewForm"  method="post">
+        <input id="inputComment" class="input" type="text" placeholder="Escribir un comentario" name="inputComment">
+        <button id="send" type="submit">Send</button>
     </form>
 </div>
+
+<script type="text/javascript"
+src="\javascripts\opiniones.js"></script>
     
    
 <%- include("footer", {}) %>
