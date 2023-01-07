@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
         "<td>" + consulta[i].email + "</td>";
         
         if(consulta[i].user_name != "admin"){
-          result += "<td><form action='/administrador/delete"+consulta[i].id_user+"' method='post'><button type='submit'>&#x274C;</button></form></td>";
+          result += "<td><form class='formBoton' action='/administrador/delete"+consulta[i].id_user+"' method='post'><button type='submit'>&#x274C;</button></form></td>";
         }
         
         result += "</tr>";

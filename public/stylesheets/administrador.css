@@ -1,8 +1,9 @@
 table {
     font-family: "Lucida Sans Unicode";
     font-size: 12px;
-    margin: auto;
-    margin-bottom: 30px;
+    margin: auto; /*para centrar la tabla*/
+    margin-bottom: 50px;
+    margin-top: 50px;
     width: 480px;
     text-align: left;
     border-collapse: collapse;
@@ -27,7 +28,19 @@ td {
 }
 
 table td :last-child{
-    background: rgba(255, 0, 0, 0.333);
+    
     margin-left: 20px;
     border-radius: 5px;
+}
+
+table button{
+    background: rgba(255, 0, 0, 0.333);
+}
+
+.formBoton{
+    background: white;
+    box-shadow: none;
+    border: none;
+    padding: 0px;
+    width: 0px;
 }

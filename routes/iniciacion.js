@@ -6,8 +6,5 @@ router.get('/', function(req, res, next) {
   res.render('iniciacion', { title: 'Elige tu deporte!', user: req.session.user, rol: req.session.rol });
 });
 
-function prueba(nombre){
-  alert(nombre);
-}
 
 module.exports = router;
