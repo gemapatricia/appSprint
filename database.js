@@ -3,14 +3,14 @@ const mysql = require("mariadb");
 const pool1 = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "root",
+  password: "",
 });
 
 const pool2 = mysql.createPool({
     host: "localhost",
     database: "sprint",
     user: "root",
-    password: "root",
+    password: "",
   });
 
 pool1.getConnection()
@@ -26,11 +26,11 @@ pool1.getConnection()
       insertUser("Mario", "García", "García", "mario", "mariogarcia@gmail.com", "Premium", "Mario123");
       console.log("Usuario premium creado");
       //borrar
-      insertOpiniones("Me ha gustado", "04/01/2023", 1);
-      insertOpiniones("No me ha gustado", "04/01/2023", 2);
-      insertOpiniones("Se puede mejorar", "04/01/2023", 3);
-      insertOpiniones("Fatal", "04/01/2023", 3);
-      insertOpiniones("Genial", "04/01/2023", 2);
+      insertOpiniones("Leed la noticia de Federer, es muy interesante", "04/01/2023", 1);
+      insertOpiniones("El fútbol es muy apasionante", "04/01/2023", 2);
+      insertOpiniones("Probé el boxeo, es para valientes jajaja", "04/01/2023", 3);
+      insertOpiniones("El tenis no me gustó mucho", "04/01/2023", 3);
+      insertOpiniones("Está genial el tenis!!!!", "04/01/2023", 2);
     }
     else console.log("La base de datos tiene usuarios");
     conn.end();
@@ -186,7 +186,8 @@ function mostrarError(error, texto){
 
 async function deleteUserById(id){
   await pool2.getConnection()
-  .then( async (conn) => {
+  .then( async (conn) => {console.log("HOLAAAA");
+
       await conn.query(`DELETE FROM user WHERE id_user = "${id}";`)
       .catch(err => { 
         console.log("No se ha podido realizar la query");
