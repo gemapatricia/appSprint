@@ -47,6 +47,14 @@ router.get('/', function(req, res, next) {
 
 router.post('/delete:id', function(req, res, next) {
   let id_usuario = req.params.id;
+  /*
+  async function borrarUsuario(id){
+    await database.deleteUserById(id);
+  }
+  
+  borrarUsuario(id_usuario);*/
+  
+  
   database.pool2.getConnection().then( async (conn) => {
     await conn.query(`DELETE FROM user WHERE id_user = "${id_usuario}";`);
     conn.end();

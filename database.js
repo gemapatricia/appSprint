@@ -184,4 +184,20 @@ function mostrarError(error, texto){
   return [mensajeError, campoError];
 }
 
-module.exports = {pool1, pool2, insertUser};
+async function deleteUserById(id){
+  await pool2.getConnection()
+  .then( async (conn) => {
+      await conn.query(`DELETE FROM user WHERE id_user = "${id}";`)
+      .catch(err => { 
+        console.log("No se ha podido realizar la query");
+        console.log(err);
+        });
+      console.log("se ha eliminado el usuario cuyo id es "+id);
+      conn.end();
+  }).catch((err) => {
+    console.log("No se puedo conectar");  
+    console.log(err);
+  }); 
+}
+
+module.exports = {pool1, pool2, insertUser, deleteUserById};
