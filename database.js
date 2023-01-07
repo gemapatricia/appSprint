@@ -186,7 +186,7 @@ function mostrarError(error, texto){
 
 async function deleteUserById(id){
   await pool2.getConnection()
-  .then( async (conn) => {console.log("HOLAAAA");
+  .then( async (conn) => {
 
       await conn.query(`DELETE FROM user WHERE id_user = "${id}";`)
       .catch(err => { 
