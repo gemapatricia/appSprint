@@ -1,10 +1,10 @@
 let boton = document.getElementById("botonForm");
 let condiciones = true;
 let condicionCorreo = false;
+let correoValido = false;
+let contrasenaValida = false;
 
-debugger;
-
-
+//debugger;
 
 function selector() {
   var combo = document.getElementById("tipoUsuario");
@@ -14,6 +14,7 @@ function selector() {
     if ($("#correoPremium").css("display") == "none")
       mostrar({ id: "formReg" }, "#correoPremium");
   } else {
+    correoValido = true;
     document.getElementById("correo").value = "";
     $("#correoPremium").css("display", "none");
   }
@@ -46,22 +47,7 @@ boton.addEventListener("click", function (e) {
   let pass2 = document.getElementById("pass2").value;
 
 
-  if (nombre.length == 0) {
-    condiciones = false;
-  }
-
-  if (ape1.length == 0) {
-    condiciones = false;
-  }
-
-  if (pass1.length == 0) {
-    condiciones = false;
-  }
-
-  if (pass2.length == 0) {
-    condiciones = false;
-  }
-
+  //************************************************************************************************ */
 
   //Verifica que tiene una mayuscula, un numero y la longitud tiene que ser más de 8 digitos
   var politicacontra = /(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/;
@@ -69,27 +55,50 @@ boton.addEventListener("click", function (e) {
   var numeroClave = /\d/;
   var comprobarCorreo = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
 
-  let correo = document.getElementById("correo").value;
 
-  if (correo.length != 0 && condicionCorreo) {
+  if (condicionCorreo) {
+    debugger;
+    let correo = document.getElementById("correo").value;
 
-    if (comprobarCorreo.test(correo)) {
-      $("#error3").css("display", "none");
-    } else {
-      condiciones = false;
-      document.getElementById("correo").style.backgroundColor = '#d93025';
-      if ($("#error3").css("display") == "none") {
-        mostrar({ id: "formReg" }, "#error3");
+    if (correo.length != 0) {
+      if (comprobarCorreo.test(correo)) {
+        correoValido = true;
+        condiciones = true;
+
+        $("#error3").css("display", "none");
+      } else {
+        condiciones = false;
+        correoValido = false;
+
+        document.getElementById("correo").style.borderColor = '#d93025';
+        if ($("#error3").css("display") == "none") {
+          mostrar({ id: "formReg" }, "#error3");
+        }
       }
     }
 
   }
 
-
-
-  if (politicacontra.test(pass1) && (pass1.length != 0 || pass2.length != 0)) {
+  //************************************************************************************ */
+  debugger;
+  if (politicacontra.test(pass1) && (pass1.length != 0 && pass2.length != 0)) {
     if (pass1 == pass2) {
+      contrasenaValida = true;
       condiciones = true;
+      $("#error").css("display", "none");
+      $("#error1").css("display", "none");
+      $("#error2").css("display", "none");
+      $("#error4").css("display", "none");
+      document.getElementById("pass1").style.borderColor = "rgba(163,158,158,255)";
+      document.getElementById("pass2").style.borderColor = "rgba(163,158,158,255)";
+
+    } else {
+      condiciones = false;
+      if ($("#error").css("display") == "none")
+        mostrar({ id: "formReg" }, "#error");
+      document.getElementById("pass1").style.borderColor = '#d93025'
+      document.getElementById("pass2").style.borderColor = '#d93025'
+
     }
   } else {
 
@@ -102,9 +111,10 @@ boton.addEventListener("click", function (e) {
       if ($("#error").css("display") == "none")
         mostrar({ id: "formReg" }, "#error");
     } else {
+      condiciones = true;
+
       $("#error").css("display", "none");
     }
-
 
     if (!(pass1.length >= 8) || !(pass2.length >= 8)) {
       condiciones = false;
@@ -112,10 +122,11 @@ boton.addEventListener("click", function (e) {
       document.getElementById("pass2").style.borderColor = '#d93025';
       if ($("#error1").css("display") == "none") {
         mostrar({ id: "formReg" }, "#error1");
+      }else {
+        condiciones = true;
+        $("#error1").css("display", "none");
       }
-    } else {
-      $("#error1").css("display", "none");
-    }
+    } 
 
 
     if (!mayusculasClave.test(pass1) || !mayusculasClave.test(pass2)) {
@@ -125,6 +136,7 @@ boton.addEventListener("click", function (e) {
       if ($("#error2").css("display") == "none")
         mostrar({ id: "formReg" }, "#error2");
     } else {
+      condiciones = true;
       $("#error2").css("display", "none");
     }
 
@@ -135,6 +147,7 @@ boton.addEventListener("click", function (e) {
       if ($("#error4").css("display") == "none")
         mostrar({ id: "formReg" }, "#error4");
     } else {
+      condiciones = true;
       $("#error4").css("display", "none");
     }
 
@@ -147,6 +160,7 @@ boton.addEventListener("click", function (e) {
     condiciones = false;
 
   } else {
+    condiciones = true;
     document.getElementById("name").style.borderColor = "rgba(163,158,158,255)";
 
   }
@@ -155,6 +169,7 @@ boton.addEventListener("click", function (e) {
     condiciones = false;
 
   } else {
+    condiciones = true;
     document.getElementById("ap1").style.borderColor = "rgba(163,158,158,255)";
   }
 
@@ -164,9 +179,11 @@ boton.addEventListener("click", function (e) {
     condiciones = false;
 
   } else {
+    condiciones = true;
     document.getElementById("username").style.borderColor = "rgba(163,158,158,255)";
   }
 
-  if (!condiciones) e.preventDefault();
+  if ( !correoValido || !contrasenaValida || !condiciones) e.preventDefault();
+
 
 });
