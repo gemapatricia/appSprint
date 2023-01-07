@@ -56,9 +56,9 @@ app.use('/tienda', tiendaRouter);
 app.use('/referentes', referentesRouter);
 app.use('/deportistaConcreto', deportistaConcretoRouter);
 app.use('/iniciacion', iniciacionRouter);
-app.use('/noticiasYEventos', noticiasYEventosRouter);
+app.use('/noticiasYEventos', restrictNoticias, noticiasYEventosRouter);
 app.use('/deporteConcreto', deporteConcretoRouter);
-app.use('/noticiaConcreta', noticiaConcretaRouter);
+app.use('/noticiaConcreta', restrictNoticias, noticiaConcretaRouter);
 app.use('/administrador', restrict, administradorRouter);
 app.use('/opinion', restrict, opinionRouter); /*comprueba si necesita un restrict*/
 app.use('/logout', function(req, res, next){
@@ -75,6 +75,17 @@ function restrict(req, res, next){
     res.redirect("/login");
   }
 }
+
+
+function restrictNoticias(req, res, next){
+  if(req.session.rol == "Administrador" || req.session.rol == "Premium" || req.session.rol == "Estándar"){
+    next();
+  } else {
+    req.session.message = "Si quieres tener las últimas novedades de nuestras publicaciones deportivas, regístrate <br> Si ya tienes una cuenta, inicia sesión";
+    res.redirect("/registro");
+  }
+}
+
 
 
 // catch 404 and forward to error handler

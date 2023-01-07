@@ -1,5 +1,8 @@
 <%- include("header", {}) %>
 <h1 id="titulo"><%= title %></h1>
+<div class="message mensajito">
+  <p>Si te registras como usuario Premium, podrás acceder a un apartado para leer las opiniones de los demás usuarios y publicar las tuyas.</p>
+</div>
 <div class="signupFrm">
   <form id="formReg" action="/registro" method="post">
     <div class="imgcontainer">
@@ -47,7 +50,7 @@
 
         <li class="tooltip" id="errorContra">
           <i class='fas fa-info-circle'></i> 
-          <span class="tooltiptext">La contraseña tiene que tener mínimo 8 caracteres, con al menos un número y con al menos una mayúscula. </span>
+          <span class="tooltiptext">La contraseña tiene que tener entre 8 y 16 caracteres, con al menos un número, una mayúscula y una minúscula </span>
         </li>
   
         <!--required-->
