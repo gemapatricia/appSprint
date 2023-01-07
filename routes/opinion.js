@@ -16,14 +16,16 @@ router.get('/', function (req, res, next) {
       for (i = 0; i < consulta.length; i++) {
 
         var usuario = await conn.query(`SELECT name FROM user WHERE id_user = ` + consulta[i].id_user);
-
-        result += "<dt>" + usuario[0].name + "</dt>" +
-          "<dd>" + consulta[i].contenido + "</dd>";
+        result += "<div class='opinionesInd'>"
+        result += "<dt class = 'usuario'>" + usuario[0].name + ": </dt>" +
+          "<dd>" + consulta[i].contenido + "</dd> <br>";
+        result += "</div>";
 
       }
       result += '</dl>';
 
 
+      conn.end();
 
 
       res.render('opinion', { title: 'Opiniones', user: req.session.user, rol: req.session.rol, opiniones: result });
@@ -40,9 +42,7 @@ router.get('/', function (req, res, next) {
 router.post('/', function (req, res, next) {
 
   let opinion = req.body.inputComment;
-  console.log("*************");
-  console.log(req.body.inputComment);
-  console.log("*************");
+  
 
   if (req.body.inputComment != '') {
 
@@ -67,6 +67,7 @@ router.post('/', function (req, res, next) {
            , "${idUsuario[0].id_user}")`;
            await conn.query(sql);
 
+           conn.end();
            res.redirect("/opinion");
 
       }).catch((err) => {
