@@ -3,14 +3,14 @@ const mysql = require("mariadb");
 const pool1 = mysql.createPool({
   host: "localhost",
   user: "root",
-  password: "",
+  password: "root",
 });
 
 const pool2 = mysql.createPool({
     host: "localhost",
     database: "sprint",
     user: "root",
-    password: "",
+    password: "root",
   });
 
 pool1.getConnection()
@@ -59,7 +59,7 @@ function setUp(conn){
                 + ", timestamp VARCHAR(20) NOT NULL" 
                 + ", id_user INT NOT NULL"
                 + ", PRIMARY KEY (id_opinion)"
-                + ", FOREIGN KEY (id_user) REFERENCES user(id_user))");
+                + ", FOREIGN KEY (id_user) REFERENCES user(id_user) ON DELETE CASCADE)");
     console.log("Tabla opinion OK");
 }
 
