@@ -50,8 +50,8 @@ app.use(function(req, res, next){
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/login', loginRouter);
-app.use('/registro', registroRouter);
+app.use('/login', restrictLoginRegistro, loginRouter);
+app.use('/registro', restrictLoginRegistro, registroRouter);
 app.use('/tienda', tiendaRouter);
 app.use('/referentes', referentesRouter);
 app.use('/deportistaConcreto', deportistaConcretoRouter);
@@ -86,6 +86,14 @@ function restrictNoticias(req, res, next){
   }
 }
 
+function restrictLoginRegistro(req, res, next){
+  if(req.session.rol == "Administrador" || req.session.rol == "Premium" || req.session.rol == "Estándar"){
+    req.session.error = "Para acceder, cierre sesión primero";
+    res.redirect("/");
+  } else {
+    next()
+  }
+}
 
 
 // catch 404 and forward to error handler
