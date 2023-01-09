@@ -4,7 +4,7 @@ var database = require('../database');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('deporteConcreto', { title: 'Deportes', user: req.session.user, rol: req.session.rol });
+  res.render('deporteConcreto', { title: 'Deporte concreto', user: req.session.user, rol: req.session.rol });
 });
 
 
