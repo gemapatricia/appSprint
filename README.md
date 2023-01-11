@@ -51,4 +51,4 @@ Para información más detallada, visite la documentación oficial: `docs/memori
 
 # Logo de Sprint
 
-![plot](docs/logo.png)
+![plot](public/images/logo.png)

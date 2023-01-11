@@ -25,7 +25,6 @@
     border-width: thin;
     border-radius: 4px;
     box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.4);
-    cursor: pointer;
     transition: 500ms;
 }
 
@@ -72,4 +71,5 @@
     background-color: #008CBA; 
     font-size: 30px;
     border-radius: 7px;
+    cursor: pointer;
 }
